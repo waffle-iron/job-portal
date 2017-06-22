@@ -1,0 +1,22 @@
+{
+    "jobportalApp": {
+        "quotaCategory" : {
+            "home": {
+                "title": "Quota Categories",
+                "createLabel": "Create a new Quota Category",
+                "createOrEditLabel": "Create or edit a Quota Category",
+                "search": "Search for Quota Category"
+            },
+            "created": "A new Quota Category is created with identifier {{ param }}",
+            "updated": "A Quota Category is updated with identifier {{ param }}",
+            "deleted": "A Quota Category is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Quota Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Quota Category"
+            },
+            "category": "Category"
+        }
+    }
+}

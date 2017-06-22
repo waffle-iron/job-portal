@@ -12,6 +12,7 @@
                 "jobSector": "Job Sector",
                 "eductation": "Eductation",
                 "clientType": "Client Type",
+                "quotaCategory": "Quota Category",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
