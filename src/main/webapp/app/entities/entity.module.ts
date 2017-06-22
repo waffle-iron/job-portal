@@ -17,7 +17,6 @@ import { JobportalEducationModule } from './education/education.module';
         JobportalTestSkillModule,
         JobportalJobTypeModule,
         JobportalJobSectorModule,
-        JobportalEductationModule,
         JobportalClientTypeModule,
         JobportalQuotaCategoryModule,
         JobportalSelectionProcedureModule,
