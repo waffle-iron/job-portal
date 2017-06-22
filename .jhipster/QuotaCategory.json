@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "quotaJobDetails",
+            "otherEntityName": "quotaJobDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "quotaCategory"
+        }
+    ],
     "fields": [
         {
             "fieldName": "category",

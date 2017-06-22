@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Quota Category"
             },
-            "category": "Category"
+            "category": "Category",
+            "quotaJobDetails": "Quota Job Details"
         }
     }
 }

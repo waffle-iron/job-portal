@@ -1,5 +1,6 @@
 package com.factly.jobportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,11 @@ public class QuotaCategory implements Serializable {
     @Column(name = "category", length = 100, nullable = false)
     private String category;
 
+    @OneToMany(mappedBy = "quotaCategory")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<QuotaJobDetails> quotaJobDetails = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -49,6 +57,31 @@ public class QuotaCategory implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Set<QuotaJobDetails> getQuotaJobDetails() {
+        return quotaJobDetails;
+    }
+
+    public QuotaCategory quotaJobDetails(Set<QuotaJobDetails> quotaJobDetails) {
+        this.quotaJobDetails = quotaJobDetails;
+        return this;
+    }
+
+    public QuotaCategory addQuotaJobDetails(QuotaJobDetails quotaJobDetails) {
+        this.quotaJobDetails.add(quotaJobDetails);
+        quotaJobDetails.setQuotaCategory(this);
+        return this;
+    }
+
+    public QuotaCategory removeQuotaJobDetails(QuotaJobDetails quotaJobDetails) {
+        this.quotaJobDetails.remove(quotaJobDetails);
+        quotaJobDetails.setQuotaCategory(null);
+        return this;
+    }
+
+    public void setQuotaJobDetails(Set<QuotaJobDetails> quotaJobDetails) {
+        this.quotaJobDetails = quotaJobDetails;
     }
 
     @Override

@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myQuotaJobDetailsLabel" jhiTranslate="jobportalApp.quotaJobDetails.home.createOrEditLabel">Create or edit a Quota Job Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!quotaJobDetails.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="quotaJobDetails.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.quotaJobDetails.vacancyCount" for="field_vacancyCount">Vacancy Count</label>
+            <input type="number" class="form-control" name="vacancyCount" id="field_vacancyCount"
+                [(ngModel)]="quotaJobDetails.vacancyCount" required min="0" />
+            <div [hidden]="!(editForm.controls.vacancyCount?.dirty && editForm.controls.vacancyCount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vacancyCount?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.vacancyCount?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.vacancyCount?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.quotaJobDetails.bornBefore" for="field_bornBefore">Born Before</label>
+            <div class="input-group">
+                <input id="field_bornBefore" type="text" class="form-control" name="bornBefore" ngbDatepicker  #bornBeforeDp="ngbDatepicker" [(ngModel)]="quotaJobDetails.bornBefore"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="bornBeforeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.bornBefore?.dirty && editForm.controls.bornBefore?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.bornBefore?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.quotaJobDetails.bornAfter" for="field_bornAfter">Born After</label>
+            <div class="input-group">
+                <input id="field_bornAfter" type="text" class="form-control" name="bornAfter" ngbDatepicker  #bornAfterDp="ngbDatepicker" [(ngModel)]="quotaJobDetails.bornAfter"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="bornAfterDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.bornAfter?.dirty && editForm.controls.bornAfter?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.bornAfter?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.quotaJobDetails.quotaCategory" for="field_quotaCategory">Quota Category</label>
+            <select class="form-control" id="field_quotaCategory" name="quotaCategory" [(ngModel)]="quotaJobDetails.quotaCategoryId"  required>
+                <option [ngValue]="quotaCategoryOption.id" *ngFor="let quotaCategoryOption of quotacategories; trackBy: trackQuotaCategoryById">{{quotaCategoryOption.category}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.quotaCategory?.dirty && editForm.controls.quotaCategory?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.quotaCategory?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

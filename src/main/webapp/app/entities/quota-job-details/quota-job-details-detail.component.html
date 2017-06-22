@@ -1,0 +1,39 @@
+
+<div *ngIf="quotaJobDetails">
+    <h2><span jhiTranslate="jobportalApp.quotaJobDetails.detail.title">Quota Job Details</span> {{quotaJobDetails.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jobportalApp.quotaJobDetails.vacancyCount">Vacancy Count</span></dt>
+        <dd>
+            <span>{{quotaJobDetails.vacancyCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.quotaJobDetails.bornBefore">Born Before</span></dt>
+        <dd>
+            <span>{{quotaJobDetails.bornBefore | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.quotaJobDetails.bornAfter">Born After</span></dt>
+        <dd>
+            <span>{{quotaJobDetails.bornAfter | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.quotaJobDetails.quotaCategory">Quota Category</span></dt>
+        <dd>
+            <div *ngIf="quotaJobDetails.quotaCategoryId">
+                <a [routerLink]="['/quota-category', quotaJobDetails.quotaCategoryId]">{{quotaJobDetails.quotaCategoryCategory}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'quota-job-details/'+ quotaJobDetails.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

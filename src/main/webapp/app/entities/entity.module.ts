@@ -8,6 +8,7 @@ import { JobportalClientTypeModule } from './client-type/client-type.module';
 import { JobportalQuotaCategoryModule } from './quota-category/quota-category.module';
 import { JobportalSelectionProcedureModule } from './selection-procedure/selection-procedure.module';
 import { JobportalLanguageModule } from './language/language.module';
+import { JobportalQuotaJobDetailsModule } from './quota-job-details/quota-job-details.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -20,6 +21,7 @@ import { JobportalLanguageModule } from './language/language.module';
         JobportalQuotaCategoryModule,
         JobportalSelectionProcedureModule,
         JobportalLanguageModule,
+        JobportalQuotaJobDetailsModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

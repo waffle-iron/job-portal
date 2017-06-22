@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "quotaCategory",
+            "otherEntityName": "quotaCategory",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "category"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "vacancyCount",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "bornBefore",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bornAfter",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170622092924",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "quota_job_details",
+    "pagination": "infinite-scroll"
+}

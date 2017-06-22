@@ -11,7 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface QuotaCategoryMapper extends EntityMapper <QuotaCategoryDTO, QuotaCategory> {
     
-    
+    @Mapping(target = "quotaJobDetails", ignore = true)
+    QuotaCategory toEntity(QuotaCategoryDTO quotaCategoryDTO); 
     default QuotaCategory fromId(Long id) {
         if (id == null) {
             return null;
