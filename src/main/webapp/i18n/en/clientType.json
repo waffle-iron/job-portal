@@ -1,0 +1,22 @@
+{
+    "jobportalApp": {
+        "clientType" : {
+            "home": {
+                "title": "Client Types",
+                "createLabel": "Create a new Client Type",
+                "createOrEditLabel": "Create or edit a Client Type",
+                "search": "Search for Client Type"
+            },
+            "created": "A new Client Type is created with identifier {{ param }}",
+            "updated": "A Client Type is updated with identifier {{ param }}",
+            "deleted": "A Client Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Client Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Client Type"
+            },
+            "type": "Type"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "changelogDate": "20170622091538",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "client_type",
+    "pagination": "infinite-scroll"
+}
