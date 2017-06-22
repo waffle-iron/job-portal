@@ -44,8 +44,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/jobportal
-        username: jobportal
-        password:
+        username: tsjobportal
+        password: tsjobportal
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
