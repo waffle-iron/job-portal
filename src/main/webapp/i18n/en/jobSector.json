@@ -1,0 +1,23 @@
+{
+    "jobportalApp": {
+        "jobSector" : {
+            "home": {
+                "title": "Job Sectors",
+                "createLabel": "Create a new Job Sector",
+                "createOrEditLabel": "Create or edit a Job Sector",
+                "search": "Search for Job Sector"
+            },
+            "created": "A new Job Sector is created with identifier {{ param }}",
+            "updated": "A Job Sector is updated with identifier {{ param }}",
+            "deleted": "A Job Sector is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Job Sector {{ id }}?"
+            },
+            "detail": {
+                "title": "Job Sector"
+            },
+            "sector": "Sector",
+            "iconUrl": "Icon Url"
+        }
+    }
+}
