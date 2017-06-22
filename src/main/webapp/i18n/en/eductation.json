@@ -1,0 +1,22 @@
+{
+    "jobportalApp": {
+        "eductation" : {
+            "home": {
+                "title": "Eductations",
+                "createLabel": "Create a new Eductation",
+                "createOrEditLabel": "Create or edit a Eductation",
+                "search": "Search for Eductation"
+            },
+            "created": "A new Eductation is created with identifier {{ param }}",
+            "updated": "A Eductation is updated with identifier {{ param }}",
+            "deleted": "A Eductation is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Eductation {{ id }}?"
+            },
+            "detail": {
+                "title": "Eductation"
+            },
+            "education": "Education"
+        }
+    }
+}

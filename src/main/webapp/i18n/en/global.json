@@ -10,6 +10,7 @@
                 "testSkill": "Test Skill",
                 "jobType": "Job Type",
                 "jobSector": "Job Sector",
+                "eductation": "Eductation",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
