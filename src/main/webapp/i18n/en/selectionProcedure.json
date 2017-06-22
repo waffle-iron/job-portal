@@ -1,0 +1,22 @@
+{
+    "jobportalApp": {
+        "selectionProcedure" : {
+            "home": {
+                "title": "Selection Procedures",
+                "createLabel": "Create a new Selection Procedure",
+                "createOrEditLabel": "Create or edit a Selection Procedure",
+                "search": "Search for Selection Procedure"
+            },
+            "created": "A new Selection Procedure is created with identifier {{ param }}",
+            "updated": "A Selection Procedure is updated with identifier {{ param }}",
+            "deleted": "A Selection Procedure is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Selection Procedure {{ id }}?"
+            },
+            "detail": {
+                "title": "Selection Procedure"
+            },
+            "procedure": "Procedure"
+        }
+    }
+}

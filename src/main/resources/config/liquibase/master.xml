@@ -11,6 +11,7 @@
     <include file="classpath:config/liquibase/changelog/20170622091251_added_entity_Eductation.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170622091538_added_entity_ClientType.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170622091944_added_entity_QuotaCategory.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170622092217_added_entity_SelectionProcedure.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

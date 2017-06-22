@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "procedure",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "changelogDate": "20170622092217",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "selection_procedure",
+    "pagination": "infinite-scroll"
+}

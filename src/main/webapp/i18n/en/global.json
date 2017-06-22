@@ -13,6 +13,7 @@
                 "eductation": "Eductation",
                 "clientType": "Client Type",
                 "quotaCategory": "Quota Category",
+                "selectionProcedure": "Selection Procedure",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
