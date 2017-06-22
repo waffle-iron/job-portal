@@ -14,6 +14,7 @@
                 "clientType": "Client Type",
                 "quotaCategory": "Quota Category",
                 "selectionProcedure": "Selection Procedure",
+                "language": "Language",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
