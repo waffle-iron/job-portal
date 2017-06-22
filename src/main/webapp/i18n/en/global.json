@@ -11,6 +11,7 @@
                 "jobType": "Job Type",
                 "jobSector": "Job Sector",
                 "eductation": "Eductation",
+                "clientType": "Client Type",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
