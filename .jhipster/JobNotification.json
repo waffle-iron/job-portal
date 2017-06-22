@@ -1,0 +1,200 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "clientType",
+            "otherEntityName": "clientType",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "type"
+        },
+        {
+            "relationshipName": "jobSector",
+            "otherEntityName": "jobSector",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "sector"
+        },
+        {
+            "relationshipName": "jobType",
+            "otherEntityName": "jobType",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "type"
+        },
+        {
+            "relationshipName": "education",
+            "otherEntityName": "education",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "education"
+        },
+        {
+            "relationshipName": "testSkill",
+            "otherEntityName": "testSkill",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "skill",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jobNotification"
+        },
+        {
+            "relationshipName": "writtenExamLanguage",
+            "otherEntityName": "language",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "language",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jobNotification"
+        },
+        {
+            "relationshipName": "selectionProcedure",
+            "otherEntityName": "selectionProcedure",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "procedure",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jobNotification"
+        },
+        {
+            "relationshipName": "languageProficiency",
+            "otherEntityName": "language",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "language",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jobNotification"
+        },
+        {
+            "relationshipName": "quotaJobDetails",
+            "otherEntityName": "quotaJobDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "jobNotification"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "headline",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "500"
+        },
+        {
+            "fieldName": "notificationDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "organization",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "250"
+        },
+        {
+            "fieldName": "jobRole",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "jobLocation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "250"
+        },
+        {
+            "fieldName": "totalVacancyCount",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "additionalQualification",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "workExperience",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "salary",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "applicationDeadline",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "notificationLink",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "applicationLink",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "examLocation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "500"
+        }
+    ],
+    "changelogDate": "20170622095116",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "job_notification",
+    "pagination": "infinite-scroll"
+}

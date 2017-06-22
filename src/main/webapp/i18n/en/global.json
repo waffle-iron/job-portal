@@ -16,6 +16,8 @@
                 "selectionProcedure": "Selection Procedure",
                 "language": "Language",
                 "quotaJobDetails": "Quota Job Details",
+                "jobNotification": "Job Notification",
+                "education": "Education",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -41,9 +41,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = JobportalApp.class)
 public class EductationResourceIntTest {
 
-    private static final String DEFAULT_EDUCATION = "AAAAAAAAAA";
-    private static final String UPDATED_EDUCATION = "BBBBBBBBBB";
-
     @Autowired
     private EductationRepository eductationRepository;
 
@@ -89,8 +86,7 @@ public class EductationResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Eductation createEntity(EntityManager em) {
-        Eductation eductation = new Eductation()
-            .education(DEFAULT_EDUCATION);
+        Eductation eductation = new Eductation();
         return eductation;
     }
 
@@ -116,7 +112,6 @@ public class EductationResourceIntTest {
         List<Eductation> eductationList = eductationRepository.findAll();
         assertThat(eductationList).hasSize(databaseSizeBeforeCreate + 1);
         Eductation testEductation = eductationList.get(eductationList.size() - 1);
-        assertThat(testEductation.getEducation()).isEqualTo(DEFAULT_EDUCATION);
 
         // Validate the Eductation in Elasticsearch
         Eductation eductationEs = eductationSearchRepository.findOne(testEductation.getId());
@@ -145,25 +140,6 @@ public class EductationResourceIntTest {
 
     @Test
     @Transactional
-    public void checkEducationIsRequired() throws Exception {
-        int databaseSizeBeforeTest = eductationRepository.findAll().size();
-        // set the field null
-        eductation.setEducation(null);
-
-        // Create the Eductation, which fails.
-        EductationDTO eductationDTO = eductationMapper.toDto(eductation);
-
-        restEductationMockMvc.perform(post("/api/eductations")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(eductationDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Eductation> eductationList = eductationRepository.findAll();
-        assertThat(eductationList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllEductations() throws Exception {
         // Initialize the database
         eductationRepository.saveAndFlush(eductation);
@@ -172,8 +148,7 @@ public class EductationResourceIntTest {
         restEductationMockMvc.perform(get("/api/eductations?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(eductation.getId().intValue())))
-            .andExpect(jsonPath("$.[*].education").value(hasItem(DEFAULT_EDUCATION.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(eductation.getId().intValue())));
     }
 
     @Test
@@ -186,8 +161,7 @@ public class EductationResourceIntTest {
         restEductationMockMvc.perform(get("/api/eductations/{id}", eductation.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(eductation.getId().intValue()))
-            .andExpect(jsonPath("$.education").value(DEFAULT_EDUCATION.toString()));
+            .andExpect(jsonPath("$.id").value(eductation.getId().intValue()));
     }
 
     @Test
@@ -208,8 +182,6 @@ public class EductationResourceIntTest {
 
         // Update the eductation
         Eductation updatedEductation = eductationRepository.findOne(eductation.getId());
-        updatedEductation
-            .education(UPDATED_EDUCATION);
         EductationDTO eductationDTO = eductationMapper.toDto(updatedEductation);
 
         restEductationMockMvc.perform(put("/api/eductations")
@@ -221,7 +193,6 @@ public class EductationResourceIntTest {
         List<Eductation> eductationList = eductationRepository.findAll();
         assertThat(eductationList).hasSize(databaseSizeBeforeUpdate);
         Eductation testEductation = eductationList.get(eductationList.size() - 1);
-        assertThat(testEductation.getEducation()).isEqualTo(UPDATED_EDUCATION);
 
         // Validate the Eductation in Elasticsearch
         Eductation eductationEs = eductationSearchRepository.findOne(testEductation.getId());
@@ -280,8 +251,7 @@ public class EductationResourceIntTest {
         restEductationMockMvc.perform(get("/api/_search/eductations?query=id:" + eductation.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(eductation.getId().intValue())))
-            .andExpect(jsonPath("$.[*].education").value(hasItem(DEFAULT_EDUCATION.toString())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(eductation.getId().intValue())));
     }
 
     @Test

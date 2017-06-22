@@ -1,7 +1,6 @@
 package com.factly.jobportal.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,24 +11,12 @@ public class EductationDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
-    @Size(max = 100)
-    private String education;
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
     }
 
     @Override
@@ -57,7 +44,6 @@ public class EductationDTO implements Serializable {
     public String toString() {
         return "EductationDTO{" +
             "id=" + getId() +
-            ", education='" + getEducation() + "'" +
             "}";
     }
 }

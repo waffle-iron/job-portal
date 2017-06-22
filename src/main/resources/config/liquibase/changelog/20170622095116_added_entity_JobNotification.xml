@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity JobNotification.
+    -->
+    <changeSet id="20170622095116-1" author="jhipster">
+        <createTable tableName="job_notification">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="headline" type="varchar(500)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="notification_date" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="jhi_organization" type="varchar(250)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="job_role" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="job_location" type="varchar(250)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="total_vacancy_count" type="integer">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="additional_qualification" type="clob">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="work_experience" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="salary" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="application_deadline" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="description" type="clob">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="notification_link" type="clob">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="application_link" type="clob">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="exam_location" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="client_type_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="job_sector_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="job_type_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="education_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="job_notification_test_skill">
+            <column name="test_skills_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_notifications_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="job_notifications_id, test_skills_id" tableName="job_notification_test_skill"/>
+        
+        <createTable tableName="job_notification_written_exam_language">
+            <column name="written_exam_languages_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_notifications_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="job_notifications_id, written_exam_languages_id" tableName="job_notification_written_exam_language"/>
+        
+        <createTable tableName="job_notification_selection_procedure">
+            <column name="selection_procedures_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_notifications_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="job_notifications_id, selection_procedures_id" tableName="job_notification_selection_procedure"/>
+        
+        <createTable tableName="job_notification_language_proficiency">
+            <column name="language_proficiencies_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_notifications_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="job_notifications_id, language_proficiencies_id" tableName="job_notification_language_proficiency"/>
+        
+    </changeSet>
+</databaseChangeLog>

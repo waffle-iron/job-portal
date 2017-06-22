@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -52,7 +51,7 @@ public class EductationResource {
      */
     @PostMapping("/eductations")
     @Timed
-    public ResponseEntity<EductationDTO> createEductation(@Valid @RequestBody EductationDTO eductationDTO) throws URISyntaxException {
+    public ResponseEntity<EductationDTO> createEductation(@RequestBody EductationDTO eductationDTO) throws URISyntaxException {
         log.debug("REST request to save Eductation : {}", eductationDTO);
         if (eductationDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new eductation cannot already have an ID")).body(null);
@@ -74,7 +73,7 @@ public class EductationResource {
      */
     @PutMapping("/eductations")
     @Timed
-    public ResponseEntity<EductationDTO> updateEductation(@Valid @RequestBody EductationDTO eductationDTO) throws URISyntaxException {
+    public ResponseEntity<EductationDTO> updateEductation(@RequestBody EductationDTO eductationDTO) throws URISyntaxException {
         log.debug("REST request to update Eductation : {}", eductationDTO);
         if (eductationDTO.getId() == null) {
             return createEductation(eductationDTO);

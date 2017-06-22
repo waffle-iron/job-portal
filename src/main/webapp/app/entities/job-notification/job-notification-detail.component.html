@@ -1,0 +1,125 @@
+
+<div *ngIf="jobNotification">
+    <h2><span jhiTranslate="jobportalApp.jobNotification.detail.title">Job Notification</span> {{jobNotification.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jobportalApp.jobNotification.headline">Headline</span></dt>
+        <dd>
+            <span>{{jobNotification.headline}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.notificationDate">Notification Date</span></dt>
+        <dd>
+            <span>{{jobNotification.notificationDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.organization">Organization</span></dt>
+        <dd>
+            <span>{{jobNotification.organization}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.jobRole">Job Role</span></dt>
+        <dd>
+            <span>{{jobNotification.jobRole}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.jobLocation">Job Location</span></dt>
+        <dd>
+            <span>{{jobNotification.jobLocation}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.totalVacancyCount">Total Vacancy Count</span></dt>
+        <dd>
+            <span>{{jobNotification.totalVacancyCount}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.additionalQualification">Additional Qualification</span></dt>
+        <dd>
+            <span>{{jobNotification.additionalQualification}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.workExperience">Work Experience</span></dt>
+        <dd>
+            <span>{{jobNotification.workExperience}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.salary">Salary</span></dt>
+        <dd>
+            <span>{{jobNotification.salary}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.applicationDeadline">Application Deadline</span></dt>
+        <dd>
+            <span>{{jobNotification.applicationDeadline | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.description">Description</span></dt>
+        <dd>
+            <span>{{jobNotification.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.notificationLink">Notification Link</span></dt>
+        <dd>
+            <span>{{jobNotification.notificationLink}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.applicationLink">Application Link</span></dt>
+        <dd>
+            <span>{{jobNotification.applicationLink}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.examLocation">Exam Location</span></dt>
+        <dd>
+            <span>{{jobNotification.examLocation}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.clientType">Client Type</span></dt>
+        <dd>
+            <div *ngIf="jobNotification.clientTypeId">
+                <a [routerLink]="['/client-type', jobNotification.clientTypeId]">{{jobNotification.clientTypeType}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.jobSector">Job Sector</span></dt>
+        <dd>
+            <div *ngIf="jobNotification.jobSectorId">
+                <a [routerLink]="['/job-sector', jobNotification.jobSectorId]">{{jobNotification.jobSectorSector}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.jobType">Job Type</span></dt>
+        <dd>
+            <div *ngIf="jobNotification.jobTypeId">
+                <a [routerLink]="['/job-type', jobNotification.jobTypeId]">{{jobNotification.jobTypeType}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.education">Education</span></dt>
+        <dd>
+            <div *ngIf="jobNotification.educationId">
+                <a [routerLink]="['/education', jobNotification.educationId]">{{jobNotification.educationEducation}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.testSkill">Test Skill</span></dt>
+        <dd>
+            <span *ngFor="let testSkill of jobNotification.testSkills; let last = last">
+                <a [routerLink]="['/test-skill', testSkill?.id ]">{{testSkill.skill}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.writtenExamLanguage">Written Exam Language</span></dt>
+        <dd>
+            <span *ngFor="let writtenExamLanguage of jobNotification.writtenExamLanguages; let last = last">
+                <a [routerLink]="['/language', writtenExamLanguage?.id ]">{{writtenExamLanguage.language}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.selectionProcedure">Selection Procedure</span></dt>
+        <dd>
+            <span *ngFor="let selectionProcedure of jobNotification.selectionProcedures; let last = last">
+                <a [routerLink]="['/selection-procedure', selectionProcedure?.id ]">{{selectionProcedure.procedure}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.languageProficiency">Language Proficiency</span></dt>
+        <dd>
+            <span *ngFor="let languageProficiency of jobNotification.languageProficiencies; let last = last">
+                <a [routerLink]="['/language', languageProficiency?.id ]">{{languageProficiency.language}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'job-notification/'+ jobNotification.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

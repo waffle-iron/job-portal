@@ -1,17 +1,7 @@
 {
     "fluentMethods": true,
     "relationships": [],
-    "fields": [
-        {
-            "fieldName": "education",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "maxlength"
-            ],
-            "fieldValidateRulesMaxlength": "100"
-        }
-    ],
+    "fields": [],
     "changelogDate": "20170622091251",
     "dto": "mapstruct",
     "service": "serviceImpl",

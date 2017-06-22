@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "education",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        }
+    ],
+    "changelogDate": "20170622102115",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "education",
+    "pagination": "infinite-scroll"
+}

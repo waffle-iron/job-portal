@@ -14,7 +14,10 @@
     <include file="classpath:config/liquibase/changelog/20170622092217_added_entity_SelectionProcedure.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170622092409_added_entity_Language.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170622092924_added_entity_QuotaJobDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170622095116_added_entity_JobNotification.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170622102115_added_entity_Education.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170622092924_added_entity_constraints_QuotaJobDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170622095116_added_entity_constraints_JobNotification.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

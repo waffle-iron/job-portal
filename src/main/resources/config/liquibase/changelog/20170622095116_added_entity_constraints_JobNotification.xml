@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity JobNotification.
+    -->
+    <changeSet id="20170622095116-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="client_type_id"
+                                 baseTableName="job_notification"
+                                 constraintName="fk_job_notification_client_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_sector_id"
+                                 baseTableName="job_notification"
+                                 constraintName="fk_job_notification_job_sector_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_sector"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_type_id"
+                                 baseTableName="job_notification"
+                                 constraintName="fk_job_notification_job_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="education_id"
+                                 baseTableName="job_notification"
+                                 constraintName="fk_job_notification_education_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="education"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
+                                 baseTableName="job_notification_test_skill"
+                                 constraintName="fk_job_notification_test_skill_job_notifications_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_notification"/>
+        <addForeignKeyConstraint baseColumnNames="test_skills_id"
+                                 baseTableName="job_notification_test_skill"
+                                 constraintName="fk_job_notification_test_skill_test_skills_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="test_skill"/>
+        
+        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
+                                 baseTableName="job_notification_written_exam_language"
+                                 constraintName="fk_job_notification_written_exam_language_job_notifications_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_notification"/>
+        <addForeignKeyConstraint baseColumnNames="written_exam_languages_id"
+                                 baseTableName="job_notification_written_exam_language"
+                                 constraintName="fk_job_notification_written_exam_language_written_exam_languages_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
+        
+        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
+                                 baseTableName="job_notification_selection_procedure"
+                                 constraintName="fk_job_notification_selection_procedure_job_notifications_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_notification"/>
+        <addForeignKeyConstraint baseColumnNames="selection_procedures_id"
+                                 baseTableName="job_notification_selection_procedure"
+                                 constraintName="fk_job_notification_selection_procedure_selection_procedures_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="selection_procedure"/>
+        
+        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
+                                 baseTableName="job_notification_language_proficiency"
+                                 constraintName="fk_job_notification_language_proficiency_job_notifications_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_notification"/>
+        <addForeignKeyConstraint baseColumnNames="language_proficiencies_id"
+                                 baseTableName="job_notification_language_proficiency"
+                                 constraintName="fk_job_notification_language_proficiency_language_proficiencies_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
+        
+    </changeSet>
+</databaseChangeLog>

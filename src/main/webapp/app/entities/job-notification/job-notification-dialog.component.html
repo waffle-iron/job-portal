@@ -1,0 +1,290 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myJobNotificationLabel" jhiTranslate="jobportalApp.jobNotification.home.createOrEditLabel">Create or edit a Job Notification</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!jobNotification.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="jobNotification.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.headline" for="field_headline">Headline</label>
+            <input type="text" class="form-control" name="headline" id="field_headline"
+                [(ngModel)]="jobNotification.headline" required maxlength="500" />
+            <div [hidden]="!(editForm.controls.headline?.dirty && editForm.controls.headline?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.headline?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.headline?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.notificationDate" for="field_notificationDate">Notification Date</label>
+            <div class="input-group">
+                <input id="field_notificationDate" type="text" class="form-control" name="notificationDate" ngbDatepicker  #notificationDateDp="ngbDatepicker" [(ngModel)]="jobNotification.notificationDate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="notificationDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.notificationDate?.dirty && editForm.controls.notificationDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.notificationDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.organization" for="field_organization">Organization</label>
+            <input type="text" class="form-control" name="organization" id="field_organization"
+                [(ngModel)]="jobNotification.organization" required maxlength="250" />
+            <div [hidden]="!(editForm.controls.organization?.dirty && editForm.controls.organization?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.organization?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.organization?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 250 }">
+                   This field cannot be longer than 250 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.jobRole" for="field_jobRole">Job Role</label>
+            <input type="text" class="form-control" name="jobRole" id="field_jobRole"
+                [(ngModel)]="jobNotification.jobRole" required maxlength="100" />
+            <div [hidden]="!(editForm.controls.jobRole?.dirty && editForm.controls.jobRole?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.jobRole?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.jobRole?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.jobLocation" for="field_jobLocation">Job Location</label>
+            <input type="text" class="form-control" name="jobLocation" id="field_jobLocation"
+                [(ngModel)]="jobNotification.jobLocation" maxlength="250" />
+            <div [hidden]="!(editForm.controls.jobLocation?.dirty && editForm.controls.jobLocation?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.jobLocation?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 250 }">
+                   This field cannot be longer than 250 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.totalVacancyCount" for="field_totalVacancyCount">Total Vacancy Count</label>
+            <input type="number" class="form-control" name="totalVacancyCount" id="field_totalVacancyCount"
+                [(ngModel)]="jobNotification.totalVacancyCount" required min="0" />
+            <div [hidden]="!(editForm.controls.totalVacancyCount?.dirty && editForm.controls.totalVacancyCount?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.totalVacancyCount?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.totalVacancyCount?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.totalVacancyCount?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.additionalQualification" for="field_additionalQualification">Additional Qualification</label>
+            <textarea class="form-control" name="additionalQualification" id="field_additionalQualification"
+                [(ngModel)]="jobNotification.additionalQualification"  ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.workExperience" for="field_workExperience">Work Experience</label>
+            <input type="number" class="form-control" name="workExperience" id="field_workExperience"
+                [(ngModel)]="jobNotification.workExperience" min="0" />
+            <div [hidden]="!(editForm.controls.workExperience?.dirty && editForm.controls.workExperience?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.workExperience?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.workExperience?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.salary" for="field_salary">Salary</label>
+            <input type="number" class="form-control" name="salary" id="field_salary"
+                [(ngModel)]="jobNotification.salary" min="0" />
+            <div [hidden]="!(editForm.controls.salary?.dirty && editForm.controls.salary?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.salary?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.salary?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.applicationDeadline" for="field_applicationDeadline">Application Deadline</label>
+            <div class="input-group">
+                <input id="field_applicationDeadline" type="text" class="form-control" name="applicationDeadline" ngbDatepicker  #applicationDeadlineDp="ngbDatepicker" [(ngModel)]="jobNotification.applicationDeadline"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="applicationDeadlineDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.applicationDeadline?.dirty && editForm.controls.applicationDeadline?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.applicationDeadline?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.description" for="field_description">Description</label>
+            <textarea class="form-control" name="description" id="field_description"
+                [(ngModel)]="jobNotification.description" required ></textarea>
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.notificationLink" for="field_notificationLink">Notification Link</label>
+            <textarea class="form-control" name="notificationLink" id="field_notificationLink"
+                [(ngModel)]="jobNotification.notificationLink" required ></textarea>
+            <div [hidden]="!(editForm.controls.notificationLink?.dirty && editForm.controls.notificationLink?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.notificationLink?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.applicationLink" for="field_applicationLink">Application Link</label>
+            <textarea class="form-control" name="applicationLink" id="field_applicationLink"
+                [(ngModel)]="jobNotification.applicationLink"  ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.examLocation" for="field_examLocation">Exam Location</label>
+            <input type="text" class="form-control" name="examLocation" id="field_examLocation"
+                [(ngModel)]="jobNotification.examLocation" maxlength="500" />
+            <div [hidden]="!(editForm.controls.examLocation?.dirty && editForm.controls.examLocation?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.examLocation?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.clientType" for="field_clientType">Client Type</label>
+            <select class="form-control" id="field_clientType" name="clientType" [(ngModel)]="jobNotification.clientTypeId"  required>
+                <option [ngValue]="clientTypeOption.id" *ngFor="let clientTypeOption of clienttypes; trackBy: trackClientTypeById">{{clientTypeOption.type}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.clientType?.dirty && editForm.controls.clientType?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.clientType?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.jobSector" for="field_jobSector">Job Sector</label>
+            <select class="form-control" id="field_jobSector" name="jobSector" [(ngModel)]="jobNotification.jobSectorId"  required>
+                <option [ngValue]="jobSectorOption.id" *ngFor="let jobSectorOption of jobsectors; trackBy: trackJobSectorById">{{jobSectorOption.sector}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.jobSector?.dirty && editForm.controls.jobSector?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.jobSector?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.jobType" for="field_jobType">Job Type</label>
+            <select class="form-control" id="field_jobType" name="jobType" [(ngModel)]="jobNotification.jobTypeId"  required>
+                <option [ngValue]="jobTypeOption.id" *ngFor="let jobTypeOption of jobtypes; trackBy: trackJobTypeById">{{jobTypeOption.type}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.jobType?.dirty && editForm.controls.jobType?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.jobType?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.education" for="field_education">Education</label>
+            <select class="form-control" id="field_education" name="education" [(ngModel)]="jobNotification.educationId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="educationOption.id" *ngFor="let educationOption of educations; trackBy: trackEducationById">{{educationOption.education}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.testSkill" for="field_testSkill">Test Skill</label>
+            <select class="form-control" id="field_testSkill" multiple name="testSkill" [(ngModel)]="jobNotification.testSkills" required>
+                <option [ngValue]="getSelected(jobNotification.testSkills, testSkillOption)" *ngFor="let testSkillOption of testskills; trackBy: trackTestSkillById">{{testSkillOption.skill}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.testSkill?.dirty && editForm.controls.testSkill?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.testSkill?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.writtenExamLanguage" for="field_writtenExamLanguage">Written Exam Language</label>
+            <select class="form-control" id="field_writtenExamLanguage" multiple name="writtenExamLanguage" [(ngModel)]="jobNotification.writtenExamLanguages" required>
+                <option [ngValue]="getSelected(jobNotification.writtenExamLanguages, languageOption)" *ngFor="let languageOption of languages; trackBy: trackLanguageById">{{languageOption.language}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.writtenExamLanguage?.dirty && editForm.controls.writtenExamLanguage?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.writtenExamLanguage?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.selectionProcedure" for="field_selectionProcedure">Selection Procedure</label>
+            <select class="form-control" id="field_selectionProcedure" multiple name="selectionProcedure" [(ngModel)]="jobNotification.selectionProcedures" required>
+                <option [ngValue]="getSelected(jobNotification.selectionProcedures, selectionProcedureOption)" *ngFor="let selectionProcedureOption of selectionprocedures; trackBy: trackSelectionProcedureById">{{selectionProcedureOption.procedure}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.selectionProcedure?.dirty && editForm.controls.selectionProcedure?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.selectionProcedure?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.jobNotification.languageProficiency" for="field_languageProficiency">Language Proficiency</label>
+            <select class="form-control" id="field_languageProficiency" multiple name="languageProficiency" [(ngModel)]="jobNotification.languageProficiencies">
+                <option [ngValue]="getSelected(jobNotification.languageProficiencies, languageOption)" *ngFor="let languageOption of languages; trackBy: trackLanguageById">{{languageOption.language}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

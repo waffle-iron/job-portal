@@ -1,0 +1,44 @@
+{
+    "jobportalApp": {
+        "jobNotification" : {
+            "home": {
+                "title": "Job Notifications",
+                "createLabel": "Create a new Job Notification",
+                "createOrEditLabel": "Create or edit a Job Notification",
+                "search": "Search for Job Notification"
+            },
+            "created": "A new Job Notification is created with identifier {{ param }}",
+            "updated": "A Job Notification is updated with identifier {{ param }}",
+            "deleted": "A Job Notification is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Job Notification {{ id }}?"
+            },
+            "detail": {
+                "title": "Job Notification"
+            },
+            "headline": "Headline",
+            "notificationDate": "Notification Date",
+            "organization": "Organization",
+            "jobRole": "Job Role",
+            "jobLocation": "Job Location",
+            "totalVacancyCount": "Total Vacancy Count",
+            "additionalQualification": "Additional Qualification",
+            "workExperience": "Work Experience",
+            "salary": "Salary",
+            "applicationDeadline": "Application Deadline",
+            "description": "Description",
+            "notificationLink": "Notification Link",
+            "applicationLink": "Application Link",
+            "examLocation": "Exam Location",
+            "clientType": "Client Type",
+            "jobSector": "Job Sector",
+            "jobType": "Job Type",
+            "education": "Education",
+            "testSkill": "Test Skill",
+            "writtenExamLanguage": "Written Exam Language",
+            "selectionProcedure": "Selection Procedure",
+            "languageProficiency": "Language Proficiency",
+            "quotaJobDetails": "Quota Job Details"
+        }
+    }
+}

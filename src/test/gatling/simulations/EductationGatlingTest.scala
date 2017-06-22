@@ -68,7 +68,7 @@ class EductationGatlingTest extends Simulation {
             .exec(http("Create new eductation")
             .post("/api/eductations")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "education":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_eductation_url"))).exitHereIfFailed
             .pause(10)
