@@ -33,21 +33,21 @@
             <th jhiSortBy="headline"><span jhiTranslate="jobportalApp.jobNotification.headline">Headline</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="notificationDate"><span jhiTranslate="jobportalApp.jobNotification.notificationDate">Notification Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="organization"><span jhiTranslate="jobportalApp.jobNotification.organization">Organization</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="jobRole"><span jhiTranslate="jobportalApp.jobNotification.jobRole">Job Role</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="jobRole"><span jhiTranslate="jobportalApp.jobNotification.jobRole">Job Role</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="jobLocation"><span jhiTranslate="jobportalApp.jobNotification.jobLocation">Job Location</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="totalVacancyCount"><span jhiTranslate="jobportalApp.jobNotification.totalVacancyCount">Total Vacancy Count</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="additionalQualification"><span jhiTranslate="jobportalApp.jobNotification.additionalQualification">Additional Qualification</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="additionalQualification"><span jhiTranslate="jobportalApp.jobNotification.additionalQualification">Additional Qualification</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="workExperience"><span jhiTranslate="jobportalApp.jobNotification.workExperience">Work Experience</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="salary"><span jhiTranslate="jobportalApp.jobNotification.salary">Salary</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="applicationDeadline"><span jhiTranslate="jobportalApp.jobNotification.applicationDeadline">Application Deadline</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="jobportalApp.jobNotification.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="notificationLink"><span jhiTranslate="jobportalApp.jobNotification.notificationLink">Notification Link</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="applicationLink"><span jhiTranslate="jobportalApp.jobNotification.applicationLink">Application Link</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="examLocation"><span jhiTranslate="jobportalApp.jobNotification.examLocation">Exam Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="examLocation"><span jhiTranslate="jobportalApp.jobNotification.examLocation">Exam Location</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="clientTypeType"><span jhiTranslate="jobportalApp.jobNotification.clientType">Client Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="jobSectorSector"><span jhiTranslate="jobportalApp.jobNotification.jobSector">Job Sector</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="jobTypeType"><span jhiTranslate="jobportalApp.jobNotification.jobType">Job Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="educationEducation"><span jhiTranslate="jobportalApp.jobNotification.education">Education</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="educationEducation"><span jhiTranslate="jobportalApp.jobNotification.education">Education</span> <span class="fa fa-sort"></span></th>-->
             <th></th>
             </tr>
             </thead>
@@ -57,17 +57,17 @@
                 <td>{{jobNotification.headline}}</td>
                 <td>{{jobNotification.notificationDate | date:'mediumDate'}}</td>
                 <td>{{jobNotification.organization}}</td>
-                <td>{{jobNotification.jobRole}}</td>
+                <!--<td>{{jobNotification.jobRole}}</td>-->
                 <td>{{jobNotification.jobLocation}}</td>
                 <td>{{jobNotification.totalVacancyCount}}</td>
-                <td>{{jobNotification.additionalQualification}}</td>
+                <!--<td>{{jobNotification.additionalQualification}}</td>
                 <td>{{jobNotification.workExperience}}</td>
                 <td>{{jobNotification.salary}}</td>
                 <td>{{jobNotification.applicationDeadline | date:'mediumDate'}}</td>
                 <td>{{jobNotification.description}}</td>
                 <td>{{jobNotification.notificationLink}}</td>
                 <td>{{jobNotification.applicationLink}}</td>
-                <td>{{jobNotification.examLocation}}</td>
+                <td>{{jobNotification.examLocation}}</td>-->
                 <td>
                     <div *ngIf="jobNotification.clientTypeId">
                         <a [routerLink]="['../client-type', jobNotification.clientTypeId  ]" >{{jobNotification.clientTypeType}}</a>
@@ -83,11 +83,11 @@
                         <a [routerLink]="['../job-type', jobNotification.jobTypeId  ]" >{{jobNotification.jobTypeType}}</a>
                     </div>
                 </td>
-                <td>
+                <!--<td>
                     <div *ngIf="jobNotification.educationId">
                         <a [routerLink]="['../education', jobNotification.educationId  ]" >{{jobNotification.educationEducation}}</a>
                     </div>
-                </td>
+                </td>-->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

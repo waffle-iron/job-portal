@@ -30,20 +30,17 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="quotaCategoryCategory"><span jhiTranslate="jobportalApp.quotaJobDetails.quotaCategory">Quota Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="jobNotificationId"><span jhiTranslate="jobportalApp.quotaJobDetails.jobNotification">Job Notification</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="vacancyCount"><span jhiTranslate="jobportalApp.quotaJobDetails.vacancyCount">Vacancy Count</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="bornBefore"><span jhiTranslate="jobportalApp.quotaJobDetails.bornBefore">Born Before</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="bornAfter"><span jhiTranslate="jobportalApp.quotaJobDetails.bornAfter">Born After</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="quotaCategoryCategory"><span jhiTranslate="jobportalApp.quotaJobDetails.quotaCategory">Quota Category</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="jobNotificationId"><span jhiTranslate="jobportalApp.quotaJobDetails.jobNotification">Job Notification</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let quotaJobDetails of quotaJobDetails ;trackBy: trackId">
                 <td><a [routerLink]="['../quota-job-details', quotaJobDetails.id ]">{{quotaJobDetails.id}}</a></td>
-                <td>{{quotaJobDetails.vacancyCount}}</td>
-                <td>{{quotaJobDetails.bornBefore | date:'mediumDate'}}</td>
-                <td>{{quotaJobDetails.bornAfter | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="quotaJobDetails.quotaCategoryId">
                         <a [routerLink]="['../quota-category', quotaJobDetails.quotaCategoryId  ]" >{{quotaJobDetails.quotaCategoryCategory}}</a>
@@ -54,6 +51,9 @@
                         <a [routerLink]="['../job-notification', quotaJobDetails.jobNotificationId  ]" >{{quotaJobDetails.jobNotificationId}}</a>
                     </div>
                 </td>
+                <td>{{quotaJobDetails.vacancyCount}}</td>
+                <td>{{quotaJobDetails.bornBefore | date:'mediumDate'}}</td>
+                <td>{{quotaJobDetails.bornAfter | date:'mediumDate'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

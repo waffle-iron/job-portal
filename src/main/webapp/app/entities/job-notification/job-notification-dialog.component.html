@@ -109,7 +109,7 @@
                 [(ngModel)]="jobNotification.additionalQualification"  ></textarea>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.workExperience" for="field_workExperience">Work Experience</label>
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.workExperience" for="field_workExperience">Work Experience in Months</label>
             <input type="number" class="form-control" name="workExperience" id="field_workExperience"
                 [(ngModel)]="jobNotification.workExperience" min="0" />
             <div [hidden]="!(editForm.controls.workExperience?.dirty && editForm.controls.workExperience?.invalid)">
@@ -124,7 +124,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.salary" for="field_salary">Salary</label>
+            <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.salary" for="field_salary">Monthly Salary</label>
             <input type="number" class="form-control" name="salary" id="field_salary"
                 [(ngModel)]="jobNotification.salary" min="0" />
             <div [hidden]="!(editForm.controls.salary?.dirty && editForm.controls.salary?.invalid)">
