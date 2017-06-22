@@ -11,7 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface TestSkillMapper extends EntityMapper <TestSkillDTO, TestSkill> {
     
-    
+    @Mapping(target = "jobNotifications", ignore = true)
+    TestSkill toEntity(TestSkillDTO testSkillDTO); 
     default TestSkill fromId(Long id) {
         if (id == null) {
             return null;

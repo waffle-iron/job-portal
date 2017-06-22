@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Test Skill"
             },
-            "skill": "Skill"
+            "skill": "Skill",
+            "jobNotification": "Job Notification"
         }
     }
 }

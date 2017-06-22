@@ -1,5 +1,6 @@
 package com.factly.jobportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,11 @@ public class TestSkill implements Serializable {
     @Column(name = "skill", length = 100, nullable = false)
     private String skill;
 
+    @ManyToMany(mappedBy = "testSkills")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<JobNotification> jobNotifications = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -49,6 +57,31 @@ public class TestSkill implements Serializable {
 
     public void setSkill(String skill) {
         this.skill = skill;
+    }
+
+    public Set<JobNotification> getJobNotifications() {
+        return jobNotifications;
+    }
+
+    public TestSkill jobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
+        return this;
+    }
+
+    public TestSkill addJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.add(jobNotification);
+        jobNotification.getTestSkills().add(this);
+        return this;
+    }
+
+    public TestSkill removeJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.remove(jobNotification);
+        jobNotification.getTestSkills().remove(this);
+        return this;
+    }
+
+    public void setJobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
     }
 
     @Override
