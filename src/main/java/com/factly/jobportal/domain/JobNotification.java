@@ -117,6 +117,19 @@ public class JobNotification implements Serializable {
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @NotNull
+    @JoinTable(name = "job_notification_selection_procedure",
+               joinColumns = @JoinColumn(name="job_notifications_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="selection_procedures_id", referencedColumnName="id"))
+    private Set<SelectionProcedure> selectionProcedures = new HashSet<>();
+
+    @OneToMany(mappedBy = "jobNotification")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<QuotaJobDetails> quotaJobDetails = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @NotNull
     @JoinTable(name = "job_notification_written_exam_language",
                joinColumns = @JoinColumn(name="job_notifications_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="written_exam_languages_id", referencedColumnName="id"))
@@ -124,23 +137,10 @@ public class JobNotification implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @NotNull
-    @JoinTable(name = "job_notification_selection_procedure",
-               joinColumns = @JoinColumn(name="job_notifications_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="selection_procedures_id", referencedColumnName="id"))
-    private Set<SelectionProcedure> selectionProcedures = new HashSet<>();
-
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "job_notification_language_proficiency",
                joinColumns = @JoinColumn(name="job_notifications_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="language_proficiencies_id", referencedColumnName="id"))
     private Set<Language> languageProficiencies = new HashSet<>();
-
-    @OneToMany(mappedBy = "jobNotification")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<QuotaJobDetails> quotaJobDetails = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -409,31 +409,6 @@ public class JobNotification implements Serializable {
         this.testSkills = testSkills;
     }
 
-    public Set<Language> getWrittenExamLanguages() {
-        return writtenExamLanguages;
-    }
-
-    public JobNotification writtenExamLanguages(Set<Language> languages) {
-        this.writtenExamLanguages = languages;
-        return this;
-    }
-
-    public JobNotification addWrittenExamLanguage(Language language) {
-        this.writtenExamLanguages.add(language);
-        language.getJobNotifications().add(this);
-        return this;
-    }
-
-    public JobNotification removeWrittenExamLanguage(Language language) {
-        this.writtenExamLanguages.remove(language);
-        language.getJobNotifications().remove(this);
-        return this;
-    }
-
-    public void setWrittenExamLanguages(Set<Language> languages) {
-        this.writtenExamLanguages = languages;
-    }
-
     public Set<SelectionProcedure> getSelectionProcedures() {
         return selectionProcedures;
     }
@@ -459,31 +434,6 @@ public class JobNotification implements Serializable {
         this.selectionProcedures = selectionProcedures;
     }
 
-    public Set<Language> getLanguageProficiencies() {
-        return languageProficiencies;
-    }
-
-    public JobNotification languageProficiencies(Set<Language> languages) {
-        this.languageProficiencies = languages;
-        return this;
-    }
-
-    public JobNotification addLanguageProficiency(Language language) {
-        this.languageProficiencies.add(language);
-        language.getJobNotifications().add(this);
-        return this;
-    }
-
-    public JobNotification removeLanguageProficiency(Language language) {
-        this.languageProficiencies.remove(language);
-        language.getJobNotifications().remove(this);
-        return this;
-    }
-
-    public void setLanguageProficiencies(Set<Language> languages) {
-        this.languageProficiencies = languages;
-    }
-
     public Set<QuotaJobDetails> getQuotaJobDetails() {
         return quotaJobDetails;
     }
@@ -507,6 +457,56 @@ public class JobNotification implements Serializable {
 
     public void setQuotaJobDetails(Set<QuotaJobDetails> quotaJobDetails) {
         this.quotaJobDetails = quotaJobDetails;
+    }
+
+    public Set<Language> getWrittenExamLanguages() {
+        return writtenExamLanguages;
+    }
+
+    public JobNotification writtenExamLanguages(Set<Language> languages) {
+        this.writtenExamLanguages = languages;
+        return this;
+    }
+
+    public JobNotification addWrittenExamLanguage(Language language) {
+        this.writtenExamLanguages.add(language);
+        language.getJobNotificationWrittenExamLanguages().add(this);
+        return this;
+    }
+
+    public JobNotification removeWrittenExamLanguage(Language language) {
+        this.writtenExamLanguages.remove(language);
+        language.getJobNotificationWrittenExamLanguages().remove(this);
+        return this;
+    }
+
+    public void setWrittenExamLanguages(Set<Language> languages) {
+        this.writtenExamLanguages = languages;
+    }
+
+    public Set<Language> getLanguageProficiencies() {
+        return languageProficiencies;
+    }
+
+    public JobNotification languageProficiencies(Set<Language> languages) {
+        this.languageProficiencies = languages;
+        return this;
+    }
+
+    public JobNotification addLanguageProficiency(Language language) {
+        this.languageProficiencies.add(language);
+        language.getJobNotificationLanguageProficiencies().add(this);
+        return this;
+    }
+
+    public JobNotification removeLanguageProficiency(Language language) {
+        this.languageProficiencies.remove(language);
+        language.getJobNotificationLanguageProficiencies().remove(this);
+        return this;
+    }
+
+    public void setLanguageProficiencies(Set<Language> languages) {
+        this.languageProficiencies = languages;
     }
 
     @Override

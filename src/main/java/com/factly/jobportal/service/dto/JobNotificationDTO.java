@@ -82,9 +82,9 @@ public class JobNotificationDTO implements Serializable {
 
     private Set<TestSkillDTO> testSkills = new HashSet<>();
 
-    private Set<LanguageDTO> writtenExamLanguages = new HashSet<>();
-
     private Set<SelectionProcedureDTO> selectionProcedures = new HashSet<>();
+
+    private Set<LanguageDTO> writtenExamLanguages = new HashSet<>();
 
     private Set<LanguageDTO> languageProficiencies = new HashSet<>();
 
@@ -280,20 +280,20 @@ public class JobNotificationDTO implements Serializable {
         this.testSkills = testSkills;
     }
 
-    public Set<LanguageDTO> getWrittenExamLanguages() {
-        return writtenExamLanguages;
-    }
-
-    public void setWrittenExamLanguages(Set<LanguageDTO> languages) {
-        this.writtenExamLanguages = languages;
-    }
-
     public Set<SelectionProcedureDTO> getSelectionProcedures() {
         return selectionProcedures;
     }
 
     public void setSelectionProcedures(Set<SelectionProcedureDTO> selectionProcedures) {
         this.selectionProcedures = selectionProcedures;
+    }
+
+    public Set<LanguageDTO> getWrittenExamLanguages() {
+        return writtenExamLanguages;
+    }
+
+    public void setWrittenExamLanguages(Set<LanguageDTO> languages) {
+        this.writtenExamLanguages = languages;
     }
 
     public Set<LanguageDTO> getLanguageProficiencies() {

@@ -14,10 +14,10 @@ import java.util.List;
 @Repository
 public interface JobNotificationRepository extends JpaRepository<JobNotification,Long> {
     
-    @Query("select distinct job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.writtenExamLanguages left join fetch job_notification.selectionProcedures left join fetch job_notification.languageProficiencies")
+    @Query("select distinct job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages left join fetch job_notification.languageProficiencies")
     List<JobNotification> findAllWithEagerRelationships();
 
-    @Query("select job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.writtenExamLanguages left join fetch job_notification.selectionProcedures left join fetch job_notification.languageProficiencies where job_notification.id =:id")
+    @Query("select job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages left join fetch job_notification.languageProficiencies where job_notification.id =:id")
     JobNotification findOneWithEagerRelationships(@Param("id") Long id);
     
 }

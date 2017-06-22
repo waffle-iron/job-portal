@@ -11,7 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface EducationMapper extends EntityMapper <EducationDTO, Education> {
     
-    
+    @Mapping(target = "jobNotifications", ignore = true)
+    Education toEntity(EducationDTO educationDTO); 
     default Education fromId(Long id) {
         if (id == null) {
             return null;

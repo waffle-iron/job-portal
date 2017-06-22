@@ -46,17 +46,6 @@
             "otherEntityRelationshipName": "jobNotification"
         },
         {
-            "relationshipName": "writtenExamLanguage",
-            "otherEntityName": "language",
-            "relationshipType": "many-to-many",
-            "relationshipValidateRules": [
-                "required"
-            ],
-            "otherEntityField": "language",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "jobNotification"
-        },
-        {
             "relationshipName": "selectionProcedure",
             "otherEntityName": "selectionProcedure",
             "relationshipType": "many-to-many",
@@ -68,18 +57,29 @@
             "otherEntityRelationshipName": "jobNotification"
         },
         {
+            "relationshipName": "quotaJobDetails",
+            "otherEntityName": "quotaJobDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "jobNotification"
+        },
+        {
+            "relationshipName": "writtenExamLanguage",
+            "otherEntityName": "language",
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "language",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "jobNotificationWrittenExamLanguage"
+        },
+        {
             "relationshipName": "languageProficiency",
             "otherEntityName": "language",
             "relationshipType": "many-to-many",
             "otherEntityField": "language",
             "ownerSide": true,
-            "otherEntityRelationshipName": "jobNotification"
-        },
-        {
-            "relationshipName": "quotaJobDetails",
-            "otherEntityName": "quotaJobDetails",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "jobNotification"
+            "otherEntityRelationshipName": "jobNotificationLanguageProficiency"
         }
     ],
     "fields": [

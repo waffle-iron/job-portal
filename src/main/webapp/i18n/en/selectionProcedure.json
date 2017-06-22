@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Selection Procedure"
             },
-            "procedure": "Procedure"
+            "procedure": "Procedure",
+            "jobNotification": "Job Notification"
         }
     }
 }

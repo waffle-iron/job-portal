@@ -4,6 +4,7 @@ import com.factly.jobportal.JobportalApp;
 
 import com.factly.jobportal.domain.QuotaJobDetails;
 import com.factly.jobportal.domain.QuotaCategory;
+import com.factly.jobportal.domain.JobNotification;
 import com.factly.jobportal.repository.QuotaJobDetailsRepository;
 import com.factly.jobportal.service.QuotaJobDetailsService;
 import com.factly.jobportal.repository.search.QuotaJobDetailsSearchRepository;
@@ -107,6 +108,11 @@ public class QuotaJobDetailsResourceIntTest {
         em.persist(quotaCategory);
         em.flush();
         quotaJobDetails.setQuotaCategory(quotaCategory);
+        // Add required entity
+        JobNotification jobNotification = JobNotificationResourceIntTest.createEntity(em);
+        em.persist(jobNotification);
+        em.flush();
+        quotaJobDetails.setJobNotification(jobNotification);
         return quotaJobDetails;
     }
 

@@ -44,17 +44,6 @@
                                  referencedTableName="test_skill"/>
         
         <addForeignKeyConstraint baseColumnNames="job_notifications_id"
-                                 baseTableName="job_notification_written_exam_language"
-                                 constraintName="fk_job_notification_written_exam_language_job_notifications_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="job_notification"/>
-        <addForeignKeyConstraint baseColumnNames="written_exam_languages_id"
-                                 baseTableName="job_notification_written_exam_language"
-                                 constraintName="fk_job_notification_written_exam_language_written_exam_languages_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="language"/>
-        
-        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
                                  baseTableName="job_notification_selection_procedure"
                                  constraintName="fk_job_notification_selection_procedure_job_notifications_id"
                                  referencedColumnNames="id"
@@ -64,6 +53,17 @@
                                  constraintName="fk_job_notification_selection_procedure_selection_procedures_id"
                                  referencedColumnNames="id"
                                  referencedTableName="selection_procedure"/>
+        
+        <addForeignKeyConstraint baseColumnNames="job_notifications_id"
+                                 baseTableName="job_notification_written_exam_language"
+                                 constraintName="fk_job_notification_written_exam_language_job_notifications_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_notification"/>
+        <addForeignKeyConstraint baseColumnNames="written_exam_languages_id"
+                                 baseTableName="job_notification_written_exam_language"
+                                 constraintName="fk_job_notification_written_exam_language_written_exam_languages_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
         
         <addForeignKeyConstraint baseColumnNames="job_notifications_id"
                                  baseTableName="job_notification_language_proficiency"

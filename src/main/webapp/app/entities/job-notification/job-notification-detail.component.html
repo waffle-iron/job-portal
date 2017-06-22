@@ -90,16 +90,16 @@
                 <a [routerLink]="['/test-skill', testSkill?.id ]">{{testSkill.skill}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span jhiTranslate="jobportalApp.jobNotification.writtenExamLanguage">Written Exam Language</span></dt>
-        <dd>
-            <span *ngFor="let writtenExamLanguage of jobNotification.writtenExamLanguages; let last = last">
-                <a [routerLink]="['/language', writtenExamLanguage?.id ]">{{writtenExamLanguage.language}}</a>{{last ? '' : ', '}}
-            </span>
-        </dd>
         <dt><span jhiTranslate="jobportalApp.jobNotification.selectionProcedure">Selection Procedure</span></dt>
         <dd>
             <span *ngFor="let selectionProcedure of jobNotification.selectionProcedures; let last = last">
                 <a [routerLink]="['/selection-procedure', selectionProcedure?.id ]">{{selectionProcedure.procedure}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.jobNotification.writtenExamLanguage">Written Exam Language</span></dt>
+        <dd>
+            <span *ngFor="let writtenExamLanguage of jobNotification.writtenExamLanguages; let last = last">
+                <a [routerLink]="['/language', writtenExamLanguage?.id ]">{{writtenExamLanguage.language}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
         <dt><span jhiTranslate="jobportalApp.jobNotification.languageProficiency">Language Proficiency</span></dt>

@@ -10,6 +10,7 @@ import { QuotaJobDetails } from './quota-job-details.model';
 import { QuotaJobDetailsPopupService } from './quota-job-details-popup.service';
 import { QuotaJobDetailsService } from './quota-job-details.service';
 import { QuotaCategory, QuotaCategoryService } from '../quota-category';
+import { JobNotification, JobNotificationService } from '../job-notification';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,6 +24,8 @@ export class QuotaJobDetailsDialogComponent implements OnInit {
     isSaving: boolean;
 
     quotacategories: QuotaCategory[];
+
+    jobnotifications: JobNotification[];
     bornBeforeDp: any;
     bornAfterDp: any;
 
@@ -31,6 +34,7 @@ export class QuotaJobDetailsDialogComponent implements OnInit {
         private alertService: JhiAlertService,
         private quotaJobDetailsService: QuotaJobDetailsService,
         private quotaCategoryService: QuotaCategoryService,
+        private jobNotificationService: JobNotificationService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -40,6 +44,8 @@ export class QuotaJobDetailsDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.quotaCategoryService.query()
             .subscribe((res: ResponseWrapper) => { this.quotacategories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.jobNotificationService.query()
+            .subscribe((res: ResponseWrapper) => { this.jobnotifications = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -88,6 +94,10 @@ export class QuotaJobDetailsDialogComponent implements OnInit {
     }
 
     trackQuotaCategoryById(index: number, item: QuotaCategory) {
+        return item.id;
+    }
+
+    trackJobNotificationById(index: number, item: JobNotification) {
         return item.id;
     }
 }

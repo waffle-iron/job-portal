@@ -22,10 +22,10 @@ export class JobNotification implements BaseEntity {
         public jobTypeId?: number,
         public educationId?: number,
         public testSkills?: BaseEntity[],
-        public writtenExamLanguages?: BaseEntity[],
         public selectionProcedures?: BaseEntity[],
-        public languageProficiencies?: BaseEntity[],
         public quotaJobDetails?: BaseEntity[],
+        public writtenExamLanguages?: BaseEntity[],
+        public languageProficiencies?: BaseEntity[],
     ) {
     }
 }

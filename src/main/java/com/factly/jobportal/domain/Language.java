@@ -1,5 +1,6 @@
 package com.factly.jobportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,16 @@ public class Language implements Serializable {
     @Column(name = "language", length = 100, nullable = false)
     private String language;
 
+    @ManyToMany(mappedBy = "writtenExamLanguages")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<JobNotification> jobNotificationWrittenExamLanguages = new HashSet<>();
+
+    @ManyToMany(mappedBy = "languageProficiencies")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<JobNotification> jobNotificationLanguageProficiencies = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -49,6 +62,56 @@ public class Language implements Serializable {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Set<JobNotification> getJobNotificationWrittenExamLanguages() {
+        return jobNotificationWrittenExamLanguages;
+    }
+
+    public Language jobNotificationWrittenExamLanguages(Set<JobNotification> jobNotifications) {
+        this.jobNotificationWrittenExamLanguages = jobNotifications;
+        return this;
+    }
+
+    public Language addJobNotificationWrittenExamLanguage(JobNotification jobNotification) {
+        this.jobNotificationWrittenExamLanguages.add(jobNotification);
+        jobNotification.getWrittenExamLanguages().add(this);
+        return this;
+    }
+
+    public Language removeJobNotificationWrittenExamLanguage(JobNotification jobNotification) {
+        this.jobNotificationWrittenExamLanguages.remove(jobNotification);
+        jobNotification.getWrittenExamLanguages().remove(this);
+        return this;
+    }
+
+    public void setJobNotificationWrittenExamLanguages(Set<JobNotification> jobNotifications) {
+        this.jobNotificationWrittenExamLanguages = jobNotifications;
+    }
+
+    public Set<JobNotification> getJobNotificationLanguageProficiencies() {
+        return jobNotificationLanguageProficiencies;
+    }
+
+    public Language jobNotificationLanguageProficiencies(Set<JobNotification> jobNotifications) {
+        this.jobNotificationLanguageProficiencies = jobNotifications;
+        return this;
+    }
+
+    public Language addJobNotificationLanguageProficiency(JobNotification jobNotification) {
+        this.jobNotificationLanguageProficiencies.add(jobNotification);
+        jobNotification.getLanguageProficiencies().add(this);
+        return this;
+    }
+
+    public Language removeJobNotificationLanguageProficiency(JobNotification jobNotification) {
+        this.jobNotificationLanguageProficiencies.remove(jobNotification);
+        jobNotification.getLanguageProficiencies().remove(this);
+        return this;
+    }
+
+    public void setJobNotificationLanguageProficiencies(Set<JobNotification> jobNotifications) {
+        this.jobNotificationLanguageProficiencies = jobNotifications;
     }
 
     @Override

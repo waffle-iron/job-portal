@@ -19,7 +19,8 @@
             "vacancyCount": "Vacancy Count",
             "bornBefore": "Born Before",
             "bornAfter": "Born After",
-            "quotaCategory": "Quota Category"
+            "quotaCategory": "Quota Category",
+            "jobNotification": "Job Notification"
         }
     }
 }

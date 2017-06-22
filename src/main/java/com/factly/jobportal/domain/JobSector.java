@@ -1,5 +1,6 @@
 package com.factly.jobportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -33,6 +36,11 @@ public class JobSector implements Serializable {
     @Size(max = 500)
     @Column(name = "icon_url", length = 500)
     private String iconUrl;
+
+    @OneToMany(mappedBy = "jobSector")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<JobNotification> jobNotifications = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -66,6 +74,31 @@ public class JobSector implements Serializable {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
+    }
+
+    public Set<JobNotification> getJobNotifications() {
+        return jobNotifications;
+    }
+
+    public JobSector jobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
+        return this;
+    }
+
+    public JobSector addJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.add(jobNotification);
+        jobNotification.setJobSector(this);
+        return this;
+    }
+
+    public JobSector removeJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.remove(jobNotification);
+        jobNotification.setJobSector(null);
+        return this;
+    }
+
+    public void setJobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
     }
 
     @Override

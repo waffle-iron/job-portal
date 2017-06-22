@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Language } from './language.model';
 import { LanguagePopupService } from './language-popup.service';
 import { LanguageService } from './language.service';
+import { JobNotification, JobNotificationService } from '../job-notification';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-language-dialog',
@@ -20,10 +22,13 @@ export class LanguageDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+    jobnotifications: JobNotification[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private languageService: LanguageService,
+        private jobNotificationService: JobNotificationService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -31,6 +36,8 @@ export class LanguageDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.jobNotificationService.query()
+            .subscribe((res: ResponseWrapper) => { this.jobnotifications = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -76,6 +83,21 @@ export class LanguageDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackJobNotificationById(index: number, item: JobNotification) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
 

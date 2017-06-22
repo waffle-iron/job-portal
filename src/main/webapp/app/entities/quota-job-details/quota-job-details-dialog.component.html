@@ -76,6 +76,18 @@
                 This field is required.
             </small>
         </div>
+        <div class="form-group">
+            <label jhiTranslate="jobportalApp.quotaJobDetails.jobNotification" for="field_jobNotification">Job Notification</label>
+            <select class="form-control" id="field_jobNotification" name="jobNotification" [(ngModel)]="quotaJobDetails.jobNotificationId"  required>
+                <option [ngValue]="jobNotificationOption.id" *ngFor="let jobNotificationOption of jobnotifications; trackBy: trackJobNotificationById">{{jobNotificationOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.jobNotification?.dirty && editForm.controls.jobNotification?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.jobNotification?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

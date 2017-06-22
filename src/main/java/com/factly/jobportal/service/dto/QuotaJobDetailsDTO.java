@@ -29,6 +29,8 @@ public class QuotaJobDetailsDTO implements Serializable {
 
     private String quotaCategoryCategory;
 
+    private Long jobNotificationId;
+
     public Long getId() {
         return id;
     }
@@ -75,6 +77,14 @@ public class QuotaJobDetailsDTO implements Serializable {
 
     public void setQuotaCategoryCategory(String quotaCategoryCategory) {
         this.quotaCategoryCategory = quotaCategoryCategory;
+    }
+
+    public Long getJobNotificationId() {
+        return jobNotificationId;
+    }
+
+    public void setJobNotificationId(Long jobNotificationId) {
+        this.jobNotificationId = jobNotificationId;
     }
 
     @Override

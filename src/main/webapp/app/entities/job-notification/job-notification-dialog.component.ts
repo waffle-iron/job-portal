@@ -14,8 +14,8 @@ import { JobSector, JobSectorService } from '../job-sector';
 import { JobType, JobTypeService } from '../job-type';
 import { Education, EducationService } from '../education';
 import { TestSkill, TestSkillService } from '../test-skill';
-import { Language, LanguageService } from '../language';
 import { SelectionProcedure, SelectionProcedureService } from '../selection-procedure';
+import { Language, LanguageService } from '../language';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -38,9 +38,9 @@ export class JobNotificationDialogComponent implements OnInit {
 
     testskills: TestSkill[];
 
-    languages: Language[];
-
     selectionprocedures: SelectionProcedure[];
+
+    languages: Language[];
     notificationDateDp: any;
     applicationDeadlineDp: any;
 
@@ -54,8 +54,8 @@ export class JobNotificationDialogComponent implements OnInit {
         private jobTypeService: JobTypeService,
         private educationService: EducationService,
         private testSkillService: TestSkillService,
-        private languageService: LanguageService,
         private selectionProcedureService: SelectionProcedureService,
+        private languageService: LanguageService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -73,10 +73,10 @@ export class JobNotificationDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.educations = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.testSkillService.query()
             .subscribe((res: ResponseWrapper) => { this.testskills = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-        this.languageService.query()
-            .subscribe((res: ResponseWrapper) => { this.languages = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.selectionProcedureService.query()
             .subscribe((res: ResponseWrapper) => { this.selectionprocedures = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.languageService.query()
+            .subscribe((res: ResponseWrapper) => { this.languages = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -165,11 +165,11 @@ export class JobNotificationDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackLanguageById(index: number, item: Language) {
+    trackSelectionProcedureById(index: number, item: SelectionProcedure) {
         return item.id;
     }
 
-    trackSelectionProcedureById(index: number, item: SelectionProcedure) {
+    trackLanguageById(index: number, item: Language) {
         return item.id;
     }
 

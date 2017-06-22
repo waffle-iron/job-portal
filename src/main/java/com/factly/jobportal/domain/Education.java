@@ -1,5 +1,6 @@
 package com.factly.jobportal.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,6 +33,11 @@ public class Education implements Serializable {
     @Column(name = "education", length = 100, nullable = false)
     private String education;
 
+    @OneToMany(mappedBy = "education")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<JobNotification> jobNotifications = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -49,6 +57,31 @@ public class Education implements Serializable {
 
     public void setEducation(String education) {
         this.education = education;
+    }
+
+    public Set<JobNotification> getJobNotifications() {
+        return jobNotifications;
+    }
+
+    public Education jobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
+        return this;
+    }
+
+    public Education addJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.add(jobNotification);
+        jobNotification.setEducation(this);
+        return this;
+    }
+
+    public Education removeJobNotification(JobNotification jobNotification) {
+        this.jobNotifications.remove(jobNotification);
+        jobNotification.setEducation(null);
+        return this;
+    }
+
+    public void setJobNotifications(Set<JobNotification> jobNotifications) {
+        this.jobNotifications = jobNotifications;
     }
 
     @Override

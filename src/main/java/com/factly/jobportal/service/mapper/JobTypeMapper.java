@@ -11,7 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface JobTypeMapper extends EntityMapper <JobTypeDTO, JobType> {
     
-    
+    @Mapping(target = "jobNotifications", ignore = true)
+    JobType toEntity(JobTypeDTO jobTypeDTO); 
     default JobType fromId(Long id) {
         if (id == null) {
             return null;

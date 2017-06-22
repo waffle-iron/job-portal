@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "jobNotification",
+            "otherEntityName": "jobNotification",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "jobSector"
+        }
+    ],
     "fields": [
         {
             "fieldName": "sector",

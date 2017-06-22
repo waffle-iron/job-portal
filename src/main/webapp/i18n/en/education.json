@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Education"
             },
-            "education": "Education"
+            "education": "Education",
+            "jobNotification": "Job Notification"
         }
     }
 }

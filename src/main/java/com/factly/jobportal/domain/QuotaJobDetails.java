@@ -43,6 +43,10 @@ public class QuotaJobDetails implements Serializable {
     @NotNull
     private QuotaCategory quotaCategory;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    private JobNotification jobNotification;
+
     public Long getId() {
         return id;
     }
@@ -101,6 +105,19 @@ public class QuotaJobDetails implements Serializable {
 
     public void setQuotaCategory(QuotaCategory quotaCategory) {
         this.quotaCategory = quotaCategory;
+    }
+
+    public JobNotification getJobNotification() {
+        return jobNotification;
+    }
+
+    public QuotaJobDetails jobNotification(JobNotification jobNotification) {
+        this.jobNotification = jobNotification;
+        return this;
+    }
+
+    public void setJobNotification(JobNotification jobNotification) {
+        this.jobNotification = jobNotification;
     }
 
     @Override

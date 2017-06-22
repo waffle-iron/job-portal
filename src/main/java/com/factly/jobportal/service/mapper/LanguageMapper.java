@@ -11,7 +11,9 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface LanguageMapper extends EntityMapper <LanguageDTO, Language> {
     
-    
+    @Mapping(target = "jobNotificationWrittenExamLanguages", ignore = true)
+    @Mapping(target = "jobNotificationLanguageProficiencies", ignore = true)
+    Language toEntity(LanguageDTO languageDTO); 
     default Language fromId(Long id) {
         if (id == null) {
             return null;

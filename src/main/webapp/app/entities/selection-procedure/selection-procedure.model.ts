@@ -4,6 +4,7 @@ export class SelectionProcedure implements BaseEntity {
     constructor(
         public id?: number,
         public procedure?: string,
+        public jobNotifications?: BaseEntity[],
     ) {
     }
 }

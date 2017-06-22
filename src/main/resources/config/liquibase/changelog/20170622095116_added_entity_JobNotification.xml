@@ -107,17 +107,6 @@
 
         <addPrimaryKey columnNames="job_notifications_id, test_skills_id" tableName="job_notification_test_skill"/>
         
-        <createTable tableName="job_notification_written_exam_language">
-            <column name="written_exam_languages_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="job_notifications_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="job_notifications_id, written_exam_languages_id" tableName="job_notification_written_exam_language"/>
-        
         <createTable tableName="job_notification_selection_procedure">
             <column name="selection_procedures_id" type="bigint">
                 <constraints nullable="false"/>
@@ -128,6 +117,17 @@
         </createTable>
 
         <addPrimaryKey columnNames="job_notifications_id, selection_procedures_id" tableName="job_notification_selection_procedure"/>
+        
+        <createTable tableName="job_notification_written_exam_language">
+            <column name="written_exam_languages_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_notifications_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="job_notifications_id, written_exam_languages_id" tableName="job_notification_written_exam_language"/>
         
         <createTable tableName="job_notification_language_proficiency">
             <column name="language_proficiencies_id" type="bigint">

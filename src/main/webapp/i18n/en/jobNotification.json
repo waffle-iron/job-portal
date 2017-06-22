@@ -35,10 +35,10 @@
             "jobType": "Job Type",
             "education": "Education",
             "testSkill": "Test Skill",
-            "writtenExamLanguage": "Written Exam Language",
             "selectionProcedure": "Selection Procedure",
-            "languageProficiency": "Language Proficiency",
-            "quotaJobDetails": "Quota Job Details"
+            "quotaJobDetails": "Quota Job Details",
+            "writtenExamLanguage": "Written Exam Language",
+            "languageProficiency": "Language Proficiency"
         }
     }
 }

@@ -22,6 +22,12 @@
                 <a [routerLink]="['/quota-category', quotaJobDetails.quotaCategoryId]">{{quotaJobDetails.quotaCategoryCategory}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="jobportalApp.quotaJobDetails.jobNotification">Job Notification</span></dt>
+        <dd>
+            <div *ngIf="quotaJobDetails.jobNotificationId">
+                <a [routerLink]="['/job-notification', quotaJobDetails.jobNotificationId]">{{quotaJobDetails.jobNotificationId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

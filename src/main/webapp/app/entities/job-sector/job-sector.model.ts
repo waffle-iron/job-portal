@@ -5,6 +5,7 @@ export class JobSector implements BaseEntity {
         public id?: number,
         public sector?: string,
         public iconUrl?: string,
+        public jobNotifications?: BaseEntity[],
     ) {
     }
 }

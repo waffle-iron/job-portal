@@ -1,6 +1,21 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "jobNotificationWrittenExamLanguage",
+            "otherEntityName": "jobNotification",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "writtenExamLanguage"
+        },
+        {
+            "relationshipName": "jobNotificationLanguageProficiency",
+            "otherEntityName": "jobNotification",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "languageProficiency"
+        }
+    ],
     "fields": [
         {
             "fieldName": "language",

@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity JobNotification and its DTO JobNotificationDTO.
  */
-@Mapper(componentModel = "spring", uses = {ClientTypeMapper.class, JobSectorMapper.class, JobTypeMapper.class, EducationMapper.class, TestSkillMapper.class, LanguageMapper.class, SelectionProcedureMapper.class, })
+@Mapper(componentModel = "spring", uses = {ClientTypeMapper.class, JobSectorMapper.class, JobTypeMapper.class, EducationMapper.class, TestSkillMapper.class, SelectionProcedureMapper.class, LanguageMapper.class, })
 public interface JobNotificationMapper extends EntityMapper <JobNotificationDTO, JobNotification> {
 
     @Mapping(source = "clientType.id", target = "clientTypeId")

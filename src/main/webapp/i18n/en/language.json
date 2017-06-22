@@ -16,7 +16,9 @@
             "detail": {
                 "title": "Language"
             },
-            "language": "Language"
+            "language": "Language",
+            "jobNotificationWrittenExamLanguage": "Job Notification Written Exam Language",
+            "jobNotificationLanguageProficiency": "Job Notification Language Proficiency"
         }
     }
 }

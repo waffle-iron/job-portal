@@ -7,8 +7,8 @@ import com.factly.jobportal.domain.ClientType;
 import com.factly.jobportal.domain.JobSector;
 import com.factly.jobportal.domain.JobType;
 import com.factly.jobportal.domain.TestSkill;
-import com.factly.jobportal.domain.Language;
 import com.factly.jobportal.domain.SelectionProcedure;
+import com.factly.jobportal.domain.Language;
 import com.factly.jobportal.repository.JobNotificationRepository;
 import com.factly.jobportal.service.JobNotificationService;
 import com.factly.jobportal.repository.search.JobNotificationSearchRepository;
@@ -173,15 +173,15 @@ public class JobNotificationResourceIntTest {
         em.flush();
         jobNotification.getTestSkills().add(testSkill);
         // Add required entity
-        Language writtenExamLanguage = LanguageResourceIntTest.createEntity(em);
-        em.persist(writtenExamLanguage);
-        em.flush();
-        jobNotification.getWrittenExamLanguages().add(writtenExamLanguage);
-        // Add required entity
         SelectionProcedure selectionProcedure = SelectionProcedureResourceIntTest.createEntity(em);
         em.persist(selectionProcedure);
         em.flush();
         jobNotification.getSelectionProcedures().add(selectionProcedure);
+        // Add required entity
+        Language writtenExamLanguage = LanguageResourceIntTest.createEntity(em);
+        em.persist(writtenExamLanguage);
+        em.flush();
+        jobNotification.getWrittenExamLanguages().add(writtenExamLanguage);
         return jobNotification;
     }
 

@@ -16,7 +16,8 @@
             "detail": {
                 "title": "Job Type"
             },
-            "type": "Type"
+            "type": "Type",
+            "jobNotification": "Job Notification"
         }
     }
 }

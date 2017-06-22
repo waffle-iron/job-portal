@@ -17,7 +17,8 @@
                 "title": "Job Sector"
             },
             "sector": "Sector",
-            "iconUrl": "Icon Url"
+            "iconUrl": "Icon Url",
+            "jobNotification": "Job Notification"
         }
     }
 }

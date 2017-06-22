@@ -11,7 +11,8 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {})
 public interface SelectionProcedureMapper extends EntityMapper <SelectionProcedureDTO, SelectionProcedure> {
     
-    
+    @Mapping(target = "jobNotifications", ignore = true)
+    SelectionProcedure toEntity(SelectionProcedureDTO selectionProcedureDTO); 
     default SelectionProcedure fromId(Long id) {
         if (id == null) {
             return null;
