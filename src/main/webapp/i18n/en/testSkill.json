@@ -1,0 +1,22 @@
+{
+    "jobportalApp": {
+        "testSkill" : {
+            "home": {
+                "title": "Test Skills",
+                "createLabel": "Create a new Test Skill",
+                "createOrEditLabel": "Create or edit a Test Skill",
+                "search": "Search for Test Skill"
+            },
+            "created": "A new Test Skill is created with identifier {{ param }}",
+            "updated": "A Test Skill is updated with identifier {{ param }}",
+            "deleted": "A Test Skill is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Test Skill {{ id }}?"
+            },
+            "detail": {
+                "title": "Test Skill"
+            },
+            "skill": "Skill"
+        }
+    }
+}
