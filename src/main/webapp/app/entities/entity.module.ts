@@ -3,7 +3,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { JobportalTestSkillModule } from './test-skill/test-skill.module';
 import { JobportalJobTypeModule } from './job-type/job-type.module';
 import { JobportalJobSectorModule } from './job-sector/job-sector.module';
-import { JobportalEductationModule } from './eductation/eductation.module';
 import { JobportalClientTypeModule } from './client-type/client-type.module';
 import { JobportalQuotaCategoryModule } from './quota-category/quota-category.module';
 import { JobportalSelectionProcedureModule } from './selection-procedure/selection-procedure.module';
@@ -18,7 +17,6 @@ import { JobportalEducationModule } from './education/education.module';
         JobportalTestSkillModule,
         JobportalJobTypeModule,
         JobportalJobSectorModule,
-        JobportalEductationModule,
         JobportalClientTypeModule,
         JobportalQuotaCategoryModule,
         JobportalSelectionProcedureModule,
