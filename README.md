@@ -1,5 +1,91 @@
-# jobportal
-This application was generated using JHipster 4.5.5, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.5.5](https://jhipster.github.io/documentation-archive/v4.5.5).
+# T-Job Portal
+
+Following are the steps to Install Job Portal on your local system, run it for your reference and help us in the 
+development process if you are interested.
+
+The steps also include the details on how to perform tests for the application and create builds for Production.
+
+## Prerequisites
+1. Homebrew - If missing install with the following command:
+
+
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+2. Git
+
+
+    brew install git
+
+
+3. PostgreSQL Database - If missing install with the following command:
+
+After installing Node, you should be able to run the following command to install development tools.
+You will only need to run this command when dependencies change in [package.json](package.json).
+
+    brew install postgresql
+
+4. NodeJS - If missing install with the following command:
+ 
+
+    brew install node
+
+5. Yarn - If missing install with the following command:
+
+
+    brew install yarn
+
+6. Java - If missing install with the following command:
+
+
+    brew cask install java
+
+7. Homebrew Services - If missing install with the following command:
+
+
+    brew tap homebrew/services
+
+8. Gradle - If missing install with the following command:
+
+
+    brew install gradle
+
+9. IntelliJ IDEA (or your favorite code editor) if you plan to contribute - If missing install with the following command:
+
+
+    brew cask install intellij-idea    
+    
+## Configure PostgreSQL Database
+
+1. If PostgreSQL server is not started, start with the following command:
+
+
+    brew services start postgresql
+    
+    
+2. Connect to Postgres using the postgres user. (Default password in most cases would be postgres)
+
+
+    sudo psql -U postgres
+
+You should avoid the following step if you are prompted for password.
+
+If you are not able to connect to postgresql and get an error that psql is not a recognized command, it may be because 
+there is an error linking postgresql. The following command may fix the error if that is the case:
+
+
+    brew link --force --overwrite postgresql
+      
+3. Create tsjobportal role with password: tsjobportal
+
+
+    CREATE ROLE tsjobportal WITH LOGIN PASSWORD 'tsjobportal' CREATEDB CREATEROLE REPLICATION SUPERUSER;
+       
+4. Create jobportal database with tsjobportal role as the owner
+
+
+    CREATE DATABASE jobportal WITH OWNER tsjobportal ENCODING 'UTF8';
+    GRANT ALL PRIVILEGES ON DATABASE jobportal TO tsjobportal;
+    
 
 ## Development
 
