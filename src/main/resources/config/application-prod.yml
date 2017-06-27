@@ -37,7 +37,7 @@ spring:
                     destination: topic-jhipster
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/jobportal
+        url: jdbc:postgresql://jobportal.c6i5anbwejsk.ap-south-1.rds.amazonaws.com:5432/jobportal
         username: jobportal
         password: jobportal
     jpa:
