@@ -1,8 +1,6 @@
 package com.factly.jobportal.service;
 
 import com.factly.jobportal.service.dto.JobNotificationDTO;
-import com.factly.jobportal.web.domain.JobsCount;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -46,11 +44,9 @@ public interface JobNotificationService {
      * Search for the jobNotification corresponding to the query.
      *
      *  @param query the query of the search
-     *
+     *  
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     Page<JobNotificationDTO> search(String query, Pageable pageable);
-
-    JobsCount findJobsCount(String jobType);
 }
