@@ -6,6 +6,8 @@ import com.factly.jobportal.repository.JobNotificationRepository;
 import com.factly.jobportal.repository.search.JobNotificationSearchRepository;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.service.mapper.JobNotificationMapper;
+import com.factly.jobportal.web.domain.JobsCount;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -106,5 +108,14 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         log.debug("Request to search for a page of JobNotifications for query {}", query);
         Page<JobNotification> result = jobNotificationSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(jobNotificationMapper::toDto);
+    }
+
+    /**
+     * get job notification counts based on jobtype
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public JobsCount findJobsCount(String jobType) {
+        return jobNotificationRepository.retrieveJobsCount(jobType);
     }
 }
