@@ -26,17 +26,17 @@ public class JobNotificationWebHandler {
     }
 
     public long getCentralJobsCount() {
-        return jobNotificationService.findJobsCount("Central Government Job").getJobsCount();
+        return jobNotificationService.findJobsCount("Central Government").getJobsCount();
 
     }
 
     public long getStateJobsCount() {
-        return jobNotificationService.findJobsCount("State Government Job").getJobsCount();
+        return jobNotificationService.findJobsCount("State Government").getJobsCount();
 
     }
 
     public long getOtherStateJobsCount() {
-        return jobNotificationService.findJobsCount("Other").getJobsCount();
+        return jobNotificationService.findJobsCount("PSU & Other States").getJobsCount();
 
     }
 

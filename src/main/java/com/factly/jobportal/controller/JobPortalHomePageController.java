@@ -25,9 +25,9 @@ public class JobPortalHomePageController {
     @RequestMapping(method = RequestMethod.GET)
     public String homePage(Model model) {
 
-        model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
+        /*model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
         model.addAttribute("stateJobsCount", jobNotificationWebHandler.getStateJobsCount());
-        model.addAttribute("otherJobsCount", jobNotificationWebHandler.getOtherStateJobsCount());
+        model.addAttribute("otherJobsCount", jobNotificationWebHandler.getOtherStateJobsCount());*/
         return HOME_PAGE;
     }
 
