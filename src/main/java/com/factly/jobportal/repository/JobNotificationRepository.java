@@ -1,6 +1,8 @@
 package com.factly.jobportal.repository;
 
 import com.factly.jobportal.domain.JobNotification;
+import com.factly.jobportal.web.domain.JobsCount;
+
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -13,11 +15,21 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface JobNotificationRepository extends JpaRepository<JobNotification,Long> {
-    
-    @Query("select distinct job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages left join fetch job_notification.languageProficiencies")
+
+    @Query("select distinct job_notification from JobNotification job_notification left join fetch job_notification.testSkills " +
+        "left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages " +
+        "left join fetch job_notification.languageProficiencies")
     List<JobNotification> findAllWithEagerRelationships();
 
-    @Query("select job_notification from JobNotification job_notification left join fetch job_notification.testSkills left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages left join fetch job_notification.languageProficiencies where job_notification.id =:id")
+    @Query("select job_notification from JobNotification job_notification left join fetch job_notification.testSkills " +
+        "left join fetch job_notification.selectionProcedures left join fetch job_notification.writtenExamLanguages " +
+        "left join fetch job_notification.languageProficiencies where job_notification.id =:id")
     JobNotification findOneWithEagerRelationships(@Param("id") Long id);
-    
+
+    @Query("SELECT NEW com.factly.jobportal.web.domain.JobsCount(sum(jn.totalVacancyCount)) " +
+        "FROM JobNotification jn JOIN jn.jobType jt " +
+        "WHERE jt.type= :jobType")
+    public JobsCount retrieveJobsCount(@Param("jobType") String jobType);
+
+
 }

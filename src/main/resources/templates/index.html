@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
 	<link id="preset" rel="stylesheet" href="../static/css/presets/preset1.css" th:href="@{/css/presets/preset1.css}"/>
     <link rel="stylesheet" href="..static/css/responsive.css" th:href="@{/css/responsive.css}"/>
-	
+
 	<!-- font -->
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300' rel='stylesheet' type='text/css' />
 	<link href='https://fonts.googleapis.com/css?family=Signika+Negative:400,300,600,700' rel='stylesheet' type='text/css' />
@@ -72,7 +72,7 @@
 							<div class="cta-icon icon-jobs">
 								<img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
-							<h3>3,412</h3>
+							<h3 th:text="${centralJobsCount}">3,412</h3>
 							<h4>Central Government</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 						</div>
@@ -84,7 +84,7 @@
 							<div class="cta-icon icon-company">
 								<img src="images/icon/32.png" th:src="@{/images/icon/32.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
-							<h3>12,043</h3>
+							<h3 th:text="${stateJobsCount}">12,043</h3>
 							<h4>State Government</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 						</div>
@@ -95,7 +95,7 @@
 							<div class="cta-icon icon-candidate">
 								<img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
-							<h3>5,798,298</h3>
+							<h3 th:text="${otherJobsCount}">5,798,298</h3>
 							<h4>PSU &amp; Other States</h4>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
 						</div>
@@ -104,7 +104,7 @@
 			</div><!-- cta -->
 
 			<div class="section category-items job-category-items  text-center">
-				<ul class="category-list">	
+				<ul class="category-list">
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/1.png" th:src="@{/images/icon/1.png}" alt="images" class="img-responsive"/></div>
@@ -112,7 +112,7 @@
 							<span class="category-quantity">(1298)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/2.png" th:src="@{/images/icon/2.png}" alt="images" class="img-responsive"/></div>
@@ -120,7 +120,7 @@
 							<span class="category-quantity">(76212)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/3.png" th:src="@{/images/icon/3.png}" alt="images" class="img-responsive"/></div>
@@ -128,7 +128,7 @@
 							<span class="category-quantity">(212)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/4.png" th:src="@{/images/icon/4.png}" alt="images" class="img-responsive"/></div>
@@ -136,7 +136,7 @@
 							<span class="category-quantity">(972)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/5.png" th:src="@{/images/icon/5.png}" alt="images" class="img-responsive"/></div>
@@ -144,7 +144,7 @@
 							<span class="category-quantity">(1298)</span>
 						</a>
 					</li> <!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/6.png" th:src="@{/images/icon/6.png}" alt="images" class="img-responsive"/></div>
@@ -152,7 +152,7 @@
 							<span class="category-quantity">(76212)</span>
 						</a>
 					</li> <!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/7.png" th:src="@{/images/icon/7.png}" alt="images" class="img-responsive"/></div>
@@ -160,7 +160,7 @@
 							<span class="category-quantity">(1298)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/8.png" th:src="@{/images/icon/8.png}" alt="images" class="img-responsive"/></div>
@@ -168,7 +168,7 @@
 							<span class="category-quantity">(76212)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/9.png" th:src="@{/images/icon/9.png}" alt="images" class="img-responsive"/></div>
@@ -176,7 +176,7 @@
 							<span class="category-quantity">(212)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/10.png" th:src="@{/images/icon/10.png}" alt="images" class="img-responsive"/></div>
@@ -184,7 +184,7 @@
 							<span class="category-quantity">(1298)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/11.png" th:src="@{/images/icon/11.png}" alt="images" class="img-responsive"/></div>
@@ -192,7 +192,7 @@
 							<span class="category-quantity">(124)</span>
 						</a>
 					</li><!-- category-item -->
-					
+
 					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
@@ -224,13 +224,13 @@
 							<span class="category-quantity">(972)</span>
 						</a>
 					</li> --> <!-- category-item -->
-				</ul>				
+				</ul>
 			</div><!-- category ad -->
 
 			<div class="section latest-jobs-ads">
 				<div class="section-title tab-manu">
 					<h4>Latest Jobs</h4>
-					 <!-- Nav tabs -->      
+					 <!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation"><a href="#hot-jobs" data-toggle="tab">Hot Jobs</a></li>
 						<li role="presentation"><a href="#recent-jobs" data-toggle="tab">Recent Jobs</a></li>
@@ -257,13 +257,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 
 						<div class="job-ad-item">
 							<div class="item-info">
@@ -282,14 +282,14 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
-					
+						</div><!-- ad-item -->
+
 						<div class="job-ad-item">
 							<div class="item-info">
 								<div class="item-image-box">
@@ -307,13 +307,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 
 						<div class="job-ad-item">
 							<div class="item-info">
@@ -332,7 +332,7 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
@@ -342,7 +342,7 @@
 					</div><!-- tab-pane -->
 
 					<div role="tabpanel" class="tab-pane fade in" id="recent-jobs">
-					
+
 						<div class="job-ad-item">
 							<div class="item-info">
 								<div class="item-image-box">
@@ -360,13 +360,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 
 						<div class="job-ad-item">
 							<div class="item-info">
@@ -385,13 +385,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 
 						<div class="job-ad-item">
 							<div class="item-info">
@@ -410,14 +410,14 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->						
-					
+						</div><!-- ad-item -->
+
 						<div class="job-ad-item">
 							<div class="item-info">
 								<div class="item-image-box">
@@ -435,13 +435,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 					</div><!-- tab-pane -->
 
 					<div role="tabpanel" class="tab-pane fade in active" id="popular-jobs">
@@ -462,14 +462,14 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
-					
+						</div><!-- ad-item -->
+
 						<div class="job-ad-item">
 							<div class="item-info">
 								<div class="item-image-box">
@@ -487,14 +487,14 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
-					
+						</div><!-- ad-item -->
+
 						<div class="job-ad-item">
 							<div class="item-info">
 								<div class="item-image-box">
@@ -512,13 +512,13 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
 								</div>
 							</div><!-- item-info -->
-						</div><!-- ad-item -->	
+						</div><!-- ad-item -->
 
 						<div class="job-ad-item">
 							<div class="item-info">
@@ -537,7 +537,7 @@
 											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
 											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
 										</ul>
-									</div><!-- ad-meta -->									
+									</div><!-- ad-meta -->
 								</div><!-- ad-info -->
 								<div class="button">
 									<a href="#" class="btn btn-primary">View Details</a>
@@ -550,12 +550,12 @@
 
 		</div><!-- conainer -->
 	</div><!-- page -->
-	
+
 	<!-- footer -->
 	<div th:replace="fragments/footer :: footer">Footer</div>
 	<!-- footer -->
 
-	
+
     <!-- JS -->
     <script src="..static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <script src="..static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
