@@ -1985,7 +1985,7 @@ input:-moz-placeholder {
 }
 
 .footer-bottom {
- 	background-color: rgba(40, 45, 50, 0.9);
+ 	background-color: #001F32;
  	color: #6e6e6e;
  	font-size: 14px;
  	padding: 19px 0 12px;
@@ -2066,7 +2066,7 @@ input:-moz-placeholder {
 ========================================================================== */
 
 .banner-job {
-	background-image: url(../images/bg/job-bg.jpg);
+	/*background-image: url(../images/bg/job-bg.jpg);*/
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #fff;
@@ -2082,7 +2082,7 @@ input:-moz-placeholder {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: rgba(40, 45, 50, 0.9);
+	background-color: #0072bc;
 }
 
 .banner-job h1 {
