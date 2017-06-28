@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.factly.jobportal.webhandler.JobNotificationWebHandler;
 
-@RequestMapping("/job-portal")
 @Controller
 public class JobPortalHomePageController {
 
@@ -22,16 +21,16 @@ public class JobPortalHomePageController {
     private JobNotificationWebHandler jobNotificationWebHandler;
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/job-portal", method = RequestMethod.GET)
     public String homePage(Model model) {
 
-        /*model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
+        model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
         model.addAttribute("stateJobsCount", jobNotificationWebHandler.getStateJobsCount());
-        model.addAttribute("otherJobsCount", jobNotificationWebHandler.getOtherStateJobsCount());*/
+        model.addAttribute("otherJobsCount", jobNotificationWebHandler.getOtherStateJobsCount());
         return HOME_PAGE;
     }
 
-    @RequestMapping(value= "/search", method = RequestMethod.GET)
+    @RequestMapping(value= "/job-list", method = RequestMethod.GET)
     public String searchPage(Model model, Pageable pageable, @RequestParam("searchKey") String searchKey) {
 
         model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotifications(searchKey, pageable));
