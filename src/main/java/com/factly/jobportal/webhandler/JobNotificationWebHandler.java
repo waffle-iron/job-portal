@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.factly.jobportal.service.JobNotificationService;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
+import com.factly.jobportal.web.domain.JobsCount;
 import com.factly.jobportal.web.view.JobNotificationView;
 
 @Component
@@ -26,18 +27,18 @@ public class JobNotificationWebHandler {
     }
 
     public long getCentralJobsCount() {
-        return jobNotificationService.findJobsCount("Central Government").getJobsCount();
-
+        JobsCount jobCount = jobNotificationService.findJobsCount("Central Government");
+        return (jobCount.getJobsCount() == null)  ? 0 : jobCount.getJobsCount();
     }
 
     public long getStateJobsCount() {
-        return jobNotificationService.findJobsCount("State Government").getJobsCount();
-
+        JobsCount jobCount = jobNotificationService.findJobsCount("State Government");
+        return (jobCount.getJobsCount() == null)  ? 0 : jobCount.getJobsCount();
     }
 
     public long getOtherStateJobsCount() {
-        return jobNotificationService.findJobsCount("PSU & Other States").getJobsCount();
-
+        JobsCount jobCount = jobNotificationService.findJobsCount("PSU & Other States");
+        return (jobCount.getJobsCount() == null)  ? 0 : jobCount.getJobsCount();
     }
 
     private List<JobNotificationView> buildJobNotificationView(List<JobNotificationDTO> jobNitificationsList) {

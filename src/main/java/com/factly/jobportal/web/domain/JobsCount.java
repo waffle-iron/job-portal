@@ -5,13 +5,13 @@ package com.factly.jobportal.web.domain;
  */
 public class JobsCount {
 
-    private long jobsCount;
+    private Long jobsCount;
 
-    public JobsCount(long jobCount) {
+    public JobsCount(Long jobCount) {
         this.jobsCount = jobCount;
     }
 
-    public long getJobsCount() {
+    public Long getJobsCount() {
         return jobsCount;
     }
 
