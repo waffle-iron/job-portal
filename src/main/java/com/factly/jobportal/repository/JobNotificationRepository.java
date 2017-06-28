@@ -27,9 +27,9 @@ public interface JobNotificationRepository extends JpaRepository<JobNotification
     JobNotification findOneWithEagerRelationships(@Param("id") Long id);
 
     @Query("SELECT NEW com.factly.jobportal.web.domain.JobsCount(sum(jn.totalVacancyCount)) " +
-        "FROM JobNotification jn JOIN jn.jobType jt " +
-        "WHERE jt.type= :jobType")
-    public JobsCount retrieveJobsCount(@Param("jobType") String jobType);
+        "FROM JobNotification jn JOIN jn.clientType ct " +
+        "WHERE ct.type= :clientType")
+    public JobsCount retrieveJobsCount(@Param("clientType") String clientType);
 
 
 }
