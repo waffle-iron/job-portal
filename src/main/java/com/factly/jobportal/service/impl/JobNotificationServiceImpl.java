@@ -118,4 +118,13 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     public JobsCount findJobsCount(String jobType) {
         return jobNotificationRepository.retrieveJobsCount(jobType);
     }
+
+    /**
+     * get job notification counts based on sector
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public JobsCount findSectorJobsCount(String sector) {
+        return jobNotificationRepository.retrieveSectorJobsCount(sector);
+    }
 }
