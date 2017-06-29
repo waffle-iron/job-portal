@@ -27,6 +27,21 @@ public class JobPortalHomePageController {
         model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
         model.addAttribute("stateJobsCount", jobNotificationWebHandler.getStateJobsCount());
         model.addAttribute("otherJobsCount", jobNotificationWebHandler.getOtherStateJobsCount());
+        model.addAttribute("foodAgricultureEnvironmentJobsCount", jobNotificationWebHandler.getFoodAgricultureJobsCount());
+        model.addAttribute("lifeSciencesHealthCareJobsCount", jobNotificationWebHandler.getlifeSciencesHealthCareJobsCount());
+        model.addAttribute("energyPowerJobsCount", jobNotificationWebHandler.getEnergyPowerJobsCount());
+        model.addAttribute("bankingFinanceInsuranceJobsCount", jobNotificationWebHandler.getBankingFinanceInsuranceJobsCount());
+        model.addAttribute("technologyJobsCount", jobNotificationWebHandler.getTechnologyJobsCount());
+        model.addAttribute("communicationsMediaJobsCount", jobNotificationWebHandler.getCommunicationsMediaJobsCount());
+        model.addAttribute("tourismJobsCount", jobNotificationWebHandler.getTourismJobsCount());
+        model.addAttribute("educationJobsCount", jobNotificationWebHandler.getEducationJobsCount());
+        model.addAttribute("transportInfrastructureJobsCount", jobNotificationWebHandler.getTransporInfrastructureJobsCount());
+        model.addAttribute("lawJudiciaryJobsCount", jobNotificationWebHandler.getLawJudiciaryJobsCount());
+        model.addAttribute("militarySecurityIntelligenceJobsCount", jobNotificationWebHandler.getMilitarySecurityIntelligenceJobsCount());
+        model.addAttribute("governanceAdministrationJobsCount", jobNotificationWebHandler.getGovernanceAdministrationJobsCount());
+        model.addAttribute("youthAffairsSportsJobsCount", jobNotificationWebHandler.getYouthAffairsSportsJobsCount());
+        model.addAttribute("manufacturingJobsCount", jobNotificationWebHandler.getManufacturingJobsCount());
+        model.addAttribute("otherSectorJobsCount", jobNotificationWebHandler.getOtherSectorJobsCount());
         return HOME_PAGE;
     }
 

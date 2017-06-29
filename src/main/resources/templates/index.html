@@ -72,8 +72,7 @@
 								<img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
 							<h3 th:text="${centralJobsCount}">3,412</h3>
-							<h4>Central Government</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<h4>Central Government Jobs</h4>
 						</div>
 					</div><!-- single-cta -->
 
@@ -84,8 +83,7 @@
 								<img src="images/icon/32.png" th:src="@{/images/icon/32.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
 							<h3 th:text="${stateJobsCount}">12,043</h3>
-							<h4>State Government</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<h4>State Government Jobs</h4>
 						</div>
 					</div><!-- single-cta -->
 
@@ -95,8 +93,7 @@
 								<img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
 							</div><!-- cta-icon -->
 							<h3 th:text="${otherJobsCount}">5,798,298</h3>
-							<h4>PSU &amp; Other States</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+							<h4>PSU &amp; Other States Jobs</h4>
 						</div>
 					</div><!-- single-cta -->
 				</div><!-- row -->
@@ -108,7 +105,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/1.png" th:src="@{/images/icon/1.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Food, Agriculture &amp; Environment</span>
-							<span class="category-quantity">(1298)</span>
+							<span class="category-quantity" th:text="'(' + ${foodAgricultureEnvironmentJobsCount} +')'">(1298)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -116,7 +113,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/2.png" th:src="@{/images/icon/2.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Life Sciences &amp; Health Care</span>
-							<span class="category-quantity">(76212)</span>
+							<span class="category-quantity" th:text="'(' + ${lifeSciencesHealthCareJobsCount} +')'">(76212)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -124,7 +121,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/3.png" th:src="@{/images/icon/3.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Energy &amp; Power</span>
-							<span class="category-quantity">(212)</span>
+							<span class="category-quantity" th:text="'(' + ${energyPowerJobsCount} +')'">(212)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -132,7 +129,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/4.png" th:src="@{/images/icon/4.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Banking, Finance &amp; Insurance</span>
-							<span class="category-quantity">(972)</span>
+							<span class="category-quantity" th:text="'(' + ${bankingFinanceInsuranceJobsCount} +')'">(972)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -140,7 +137,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/5.png" th:src="@{/images/icon/5.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Technology</span>
-							<span class="category-quantity">(1298)</span>
+							<span class="category-quantity" th:text="'(' + ${technologyJobsCount} +')'">(1298)</span>
 						</a>
 					</li> <!-- category-item -->
 
@@ -148,7 +145,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/6.png" th:src="@{/images/icon/6.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Communications &amp; Media</span>
-							<span class="category-quantity">(76212)</span>
+							<span class="category-quantity" th:text="'(' + ${communicationsMediaJobsCount} +')'">(76212)</span>
 						</a>
 					</li> <!-- category-item -->
 
@@ -156,7 +153,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/7.png" th:src="@{/images/icon/7.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Tourisim</span>
-							<span class="category-quantity">(1298)</span>
+							<span class="category-quantity" th:text="'(' + ${tourismJobsCount} +')'">(1298)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -164,7 +161,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/8.png" th:src="@{/images/icon/8.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Education</span>
-							<span class="category-quantity">(76212)</span>
+							<span class="category-quantity" th:text="'(' + ${educationJobsCount} +')'">(76212)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -172,7 +169,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/9.png" th:src="@{/images/icon/9.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Transport &amp; Infrastructure</span>
-							<span class="category-quantity">(212)</span>
+							<span class="category-quantity" th:text="'(' + ${transportInfrastructureJobsCount} +')'">(212)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -180,7 +177,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/10.png" th:src="@{/images/icon/10.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Law &amp; Judiciary</span>
-							<span class="category-quantity">(1298)</span>
+							<span class="category-quantity" th:text="'(' + ${lawJudiciaryJobsCount} +')'">(1298)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -188,7 +185,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/11.png" th:src="@{/images/icon/11.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Military, Security &amp; Intelligence</span>
-							<span class="category-quantity">(124)</span>
+							<span class="category-quantity" th:text="'(' + ${militarySecurityIntelligenceJobsCount} +')'">(124)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -196,7 +193,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Governance &amp; Administration</span>
-							<span class="category-quantity">(972)</span>
+							<span class="category-quantity" th:text="'(' + ${governanceAdministrationJobsCount} +')'">(972)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -204,7 +201,7 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Youth Affairs &amp; Sports</span>
-							<span class="category-quantity">(972)</span>
+							<span class="category-quantity" th:text="'(' + ${youthAffairsSportsJobsCount} +')'">(972)</span>
 						</a>
 					</li><!-- category-item -->
 
@@ -212,17 +209,17 @@
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Manufacturing</span>
-							<span class="category-quantity">(972)</span>
+							<span class="category-quantity" th:text="'(' + ${manufacturingJobsCount} +')'">(972)</span>
 						</a>
 					</li><!-- category-item -->
 
-					<!-- <li class="category-item">
+					<li class="category-item">
 						<a href="job-list.html">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Others</span>
-							<span class="category-quantity">(972)</span>
+							<span class="category-quantity" th:text="'(' + ${otherSectorJobsCount} +')'">(972)</span>
 						</a>
-					</li> --> <!-- category-item -->
+                    </li><!-- category-item -->
 				</ul>
 			</div><!-- category ad -->
 

@@ -31,5 +31,8 @@ public interface JobNotificationRepository extends JpaRepository<JobNotification
         "WHERE ct.type= :clientType")
     public JobsCount retrieveJobsCount(@Param("clientType") String clientType);
 
-
+    @Query("SELECT NEW com.factly.jobportal.web.domain.JobsCount(sum(jn.totalVacancyCount)) " +
+        "FROM JobNotification jn JOIN jn.jobSector js " +
+        "WHERE js.sector= :sector")
+    public JobsCount retrieveSectorJobsCount(@Param("sector") String sector);
 }
