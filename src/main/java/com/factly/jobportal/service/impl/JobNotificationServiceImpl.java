@@ -1,19 +1,16 @@
 package com.factly.jobportal.service.impl;
 
-import com.factly.jobportal.service.JobNotificationService;
 import com.factly.jobportal.domain.JobNotification;
 import com.factly.jobportal.repository.JobNotificationRepository;
 import com.factly.jobportal.repository.search.JobNotificationSearchRepository;
+import com.factly.jobportal.service.JobNotificationService;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.service.mapper.JobNotificationMapper;
 import com.factly.jobportal.web.domain.JobsCount;
-
-import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
-import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
@@ -25,8 +22,9 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing JobNotification.
@@ -42,6 +40,8 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     private final JobNotificationMapper jobNotificationMapper;
 
     private final JobNotificationSearchRepository jobNotificationSearchRepository;
+
+    private final String ALL_FIELDS = "_all";
 
     public JobNotificationServiceImpl(JobNotificationRepository jobNotificationRepository, JobNotificationMapper jobNotificationMapper, JobNotificationSearchRepository jobNotificationSearchRepository) {
         this.jobNotificationRepository = jobNotificationRepository;
@@ -117,8 +117,17 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     public Page<JobNotificationDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of JobNotifications for query {}", query);
         QueryStringQueryBuilder queryBuilder = queryStringQuery(query);
+
+        /* For now comment this straight forward approach, we might use this for other scenarios
         Page<JobNotification> result = jobNotificationSearchRepository.search(queryBuilder, pageable);
+        return result.map(jobNotificationMapper::toDto);*/
+        if(query.isEmpty()) {
+            query = null;
+        }
+
+        Page<JobNotification> result = findApplicableJobsByNotificationDate(pageable, query);
         return result.map(jobNotificationMapper::toDto);
+
     }
 
     @Override
@@ -137,19 +146,31 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     public Page<JobNotificationDTO> findJobsByNotificationDate(Pageable pageable) {
         log.debug("Request to search for a page of JobNotifications for query {}");
 
-        QueryBuilder query = QueryBuilders.matchAllQuery();
+        Page<JobNotification> result = findApplicableJobsByNotificationDate(pageable, null);
+        return result.map(jobNotificationMapper::toDto);
+    }
+
+    private Page<JobNotification> findApplicableJobsByNotificationDate(Pageable pageable, String queryString) {
+        RangeQueryBuilder rangeQuery = QueryBuilders.rangeQuery("applicationDeadline");
+        rangeQuery.gte(LocalDate.now());
+
+        QueryBuilder query = null;
+        if(queryString == null) {
+            query = QueryBuilders.matchAllQuery();
+        } else {
+            query = QueryBuilders.multiMatchQuery(queryString, ALL_FIELDS);
+        }
+
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
             .withQuery(query)
-            .withPageable(pageable)
+            .withPageable(pageable).withFilter(rangeQuery)
             .withSort(
                 SortBuilders
                     .fieldSort("notificationDate")
                     .order(SortOrder.DESC))
             .build();
 
-        Page<JobNotification> result = jobNotificationSearchRepository.search(searchQuery);
-        //Page<JobNotification> result = jobNotificationSearchRepository.findTopByOrderByNotificationDateAsc(pageable);
-        return result.map(jobNotificationMapper::toDto);
+        return jobNotificationSearchRepository.search(searchQuery);
     }
 
     //Find Notification with job id
