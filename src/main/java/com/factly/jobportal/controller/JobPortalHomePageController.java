@@ -15,6 +15,8 @@ public class JobPortalHomePageController {
 
 	private static final String HOME_PAGE = "index";
     private static final String JOB_NOTIFICATION_PAGE = "job-list";
+    private static final String ABOUT_US_PAGE = "about-us";
+    private static final String SIGN_IN_PAGE = "signin";
 	private static final String JOB_NOTIFICATION = "jobNotification";
 
 	@Autowired
@@ -50,5 +52,29 @@ public class JobPortalHomePageController {
 
         model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotifications(searchKey, pageable));
         return JOB_NOTIFICATION_PAGE;
+    }
+
+    @RequestMapping(value= "/job-list/all", method = RequestMethod.GET)
+    public String searchAllJobs(Model model, Pageable pageable) {
+
+        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getAllJobNotifications(pageable));
+        return JOB_NOTIFICATION_PAGE;
+    }
+
+    @RequestMapping(value= "/job-list/type", method = RequestMethod.GET)
+    public String searchByClient(Model model, Pageable pageable, @RequestParam("searchKey") String searchKey) {
+
+        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByClientType(searchKey, pageable));
+        return JOB_NOTIFICATION_PAGE;
+    }
+
+    @RequestMapping(value= "/about-us", method = RequestMethod.GET)
+    public String aboutUs() {
+        return ABOUT_US_PAGE;
+    }
+
+    @RequestMapping(value= "/sign-in", method = RequestMethod.GET)
+    public String signIn() {
+        return SIGN_IN_PAGE;
     }
 }

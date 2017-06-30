@@ -55,4 +55,6 @@ public interface JobNotificationService {
     JobsCount findJobsCount(String jobType);
 
     JobsCount findSectorJobsCount(String sector);
+
+    Page<JobNotificationDTO> findByClientType(String query, Pageable pageable);
 }
