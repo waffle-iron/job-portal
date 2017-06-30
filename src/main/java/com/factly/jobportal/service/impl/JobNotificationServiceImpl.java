@@ -125,6 +125,15 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         return result.map(jobNotificationMapper::toDto);
     }
 
+    //Find Notification with job id
+    @Override
+    @Transactional(readOnly = true)
+    public JobNotificationDTO findJobNotificationById(Long id) {
+        log.debug("Request to get JobNotification : {}", id);
+        JobNotification jobNotification = jobNotificationSearchRepository.findOne(id);
+        return jobNotificationMapper.toDto(jobNotification);
+    }
+
     /**
      * get job notification counts based on jobtype
      */

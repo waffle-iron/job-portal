@@ -131,7 +131,7 @@ public class JobNotificationWebHandler {
     private List<JobNotificationView> buildJobNotificationView(List<JobNotificationDTO> jobNitificationsList) {
         List<JobNotificationView> jobNotificationViews = new ArrayList<>();
         for (JobNotificationDTO jobNotificationDTO : jobNitificationsList) {
-            JobNotificationView jobNotificationView = new JobNotificationView(jobNotificationDTO.getHeadline(),
+            JobNotificationView jobNotificationView = new JobNotificationView(jobNotificationDTO.getId(), jobNotificationDTO.getHeadline(),
                     jobNotificationDTO.getJobLocation(), jobNotificationDTO.getJobTypeType(),
                     jobNotificationDTO.getOrganization(), jobNotificationDTO.getSalary());
             jobNotificationViews.add(jobNotificationView);
