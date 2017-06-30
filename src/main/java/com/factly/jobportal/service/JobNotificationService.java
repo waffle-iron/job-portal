@@ -5,6 +5,7 @@ import com.factly.jobportal.web.domain.JobsCount;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Interface for managing JobNotification.
@@ -56,7 +57,10 @@ public interface JobNotificationService {
 
     JobsCount findSectorJobsCount(String sector);
 
-    Page<JobNotificationDTO> findByClientType(String query, Pageable pageable);
+    Page<JobNotificationDTO> findJobByClientType(String query, Pageable pageable);
+
+    @Transactional(readOnly = true)
+    Page<JobNotificationDTO> findJobsByNotificationDate(Pageable pageable);
 
     JobNotificationDTO findJobNotificationById(Long id);
 }

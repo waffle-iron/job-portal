@@ -13,4 +13,5 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 public interface JobNotificationSearchRepository extends ElasticsearchRepository<JobNotification, Long> {
 
     Page<JobNotification> findByClientTypeType(String type, Pageable pageable);
+
 }
