@@ -1,5 +1,6 @@
 package com.factly.jobportal.controller;
 
+import com.factly.jobportal.webhandler.JobNotificationWebHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -7,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.factly.jobportal.webhandler.JobNotificationWebHandler;
 
 @Controller
 public class JobPortalHomePageController {
@@ -24,7 +23,7 @@ public class JobPortalHomePageController {
 
 
     @RequestMapping(value = "/job-portal", method = RequestMethod.GET)
-    public String homePage(Model model) {
+    public String homePage(Model model, Pageable pageable) {
 
         model.addAttribute("centralJobsCount", jobNotificationWebHandler.getCentralJobsCount());
         model.addAttribute("stateJobsCount", jobNotificationWebHandler.getStateJobsCount());
@@ -44,6 +43,9 @@ public class JobPortalHomePageController {
         model.addAttribute("youthAffairsSportsJobsCount", jobNotificationWebHandler.getYouthAffairsSportsJobsCount());
         model.addAttribute("manufacturingJobsCount", jobNotificationWebHandler.getManufacturingJobsCount());
         model.addAttribute("otherSectorJobsCount", jobNotificationWebHandler.getOtherSectorJobsCount());
+
+        //
+        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByDate(pageable));
         return HOME_PAGE;
     }
 
@@ -57,7 +59,7 @@ public class JobPortalHomePageController {
     @RequestMapping(value= "/job-list/all", method = RequestMethod.GET)
     public String searchAllJobs(Model model, Pageable pageable) {
 
-        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getAllJobNotifications(pageable));
+        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByDate(pageable));
         return JOB_NOTIFICATION_PAGE;
     }
 

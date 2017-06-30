@@ -290,28 +290,9 @@
 								</div>
 							</div><!-- featured-top -->
 
-							<div class="job-ad-item" th:each="notificationView : ${jobNotification}">
-								<div class="item-info">
-									<div class="item-image-box">
-										<div class="item-image">
-											<a href="/job-details" th:href="@{/job-details(jobId=${notificationView.id})}"><img src="images/job/18.png" th:src="@{/images/job/18.png}" alt="Image" class="img-responsive"/></a>
-										</div><!-- item-image -->
-									</div>
-
-									<div class="ad-info">
-										<span th:text="${notificationView.headLineText}"><a href="/job-details" class="title">Program Development</a></span>
-										<div class="ad-meta">
-											<ul>
-												<li th:text="${notificationView.location}"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-												<li th:text="${notificationView.jobType}"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-												<li th:text="${notificationView.organization}"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>State Government</a></li>
-												<li th:text="${notificationView.salary}"><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$5,000 - $10,000</a></li>
-											</ul>
-										</div><!-- ad-meta -->
-									</div><!-- ad-info -->
-								</div><!-- item-info -->
-							</div><!-- job-ad-item -->
-
+                            <!-- jobs -->
+                            <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${jobNotification}">joblist</div>
+                            <!-- jobs -->
 
 							<!-- pagination  -->
 							<div class="text-center">

@@ -25,15 +25,15 @@ public class JobNotificationWebHandler {
         return buildJobNotificationView(jobNotificationDTOS.getContent());
     }
 
-    public List<JobNotificationView> getAllJobNotifications(Pageable pageable) {
+    public List<JobNotificationView> getJobNotificationsByDate(Pageable pageable) {
 
-        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.search("*", pageable);
+        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.findJobsByNotificationDate(pageable);
         return buildJobNotificationView(jobNotificationDTOS.getContent());
     }
 
     public List<JobNotificationView> getJobNotificationsByClientType(String searchKey, Pageable pageable) {
 
-        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.findByClientType(searchKey, pageable);
+        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.findJobByClientType(searchKey, pageable);
         return buildJobNotificationView(jobNotificationDTOS.getContent());
     }
 
