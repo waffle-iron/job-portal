@@ -23,7 +23,18 @@ public class JobNotificationWebHandler {
 
         Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.search(searchKey, pageable);
         return buildJobNotificationView(jobNotificationDTOS.getContent());
+    }
 
+    public List<JobNotificationView> getAllJobNotifications(Pageable pageable) {
+
+        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.search("*", pageable);
+        return buildJobNotificationView(jobNotificationDTOS.getContent());
+    }
+
+    public List<JobNotificationView> getJobNotificationsByClientType(String searchKey, Pageable pageable) {
+
+        Page<JobNotificationDTO> jobNotificationDTOS = jobNotificationService.findByClientType(searchKey, pageable);
+        return buildJobNotificationView(jobNotificationDTOS.getContent());
     }
 
     public long getCentralJobsCount() {

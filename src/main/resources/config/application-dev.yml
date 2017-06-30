@@ -61,7 +61,7 @@ spring:
             hibernate.cache.hazelcast.use_lite_member: true
     data:
         elasticsearch:
-            cluster-name:
+            cluster-name: jobportal
             cluster-nodes:
             properties:
                 path:

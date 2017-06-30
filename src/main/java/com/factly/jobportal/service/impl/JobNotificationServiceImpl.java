@@ -1,5 +1,6 @@
 package com.factly.jobportal.service.impl;
 
+import com.factly.jobportal.domain.ClientType;
 import com.factly.jobportal.service.JobNotificationService;
 import com.factly.jobportal.domain.JobNotification;
 import com.factly.jobportal.repository.JobNotificationRepository;
@@ -8,6 +9,8 @@ import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.service.mapper.JobNotificationMapper;
 import com.factly.jobportal.web.domain.JobsCount;
 
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -106,7 +109,19 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     @Transactional(readOnly = true)
     public Page<JobNotificationDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of JobNotifications for query {}", query);
-        Page<JobNotification> result = jobNotificationSearchRepository.search(queryStringQuery(query), pageable);
+        QueryStringQueryBuilder queryBuilder = queryStringQuery(query);
+        Page<JobNotification> result = jobNotificationSearchRepository.search(queryBuilder, pageable);
+        return result.map(jobNotificationMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<JobNotificationDTO> findByClientType(String type, Pageable pageable) {
+        log.debug("Request to search for a page of JobNotifications for query {}", type);
+//        QueryStringQueryBuilder queryBuilder = queryStringQuery(query).field("clientType.type");
+//        Page<JobNotification> result = jobNotificationSearchRepository.search(queryBuilder, pageable);
+
+        Page<JobNotification> result = jobNotificationSearchRepository.findByClientTypeType(type, pageable);
         return result.map(jobNotificationMapper::toDto);
     }
 

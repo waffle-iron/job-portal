@@ -67,34 +67,40 @@
 			<div class="section cta cta-two text-center">
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="single-cta">
-							<div class="cta-icon icon-jobs">
-								<img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
-							</div><!-- cta-icon -->
-							<h3 th:text="${centralJobsCount}">3,412</h3>
-							<h4>Central Government Jobs</h4>
-						</div>
+                        <a href="job-list/type?searchKey=Central%20Government">
+                            <div class="single-cta">
+                                <div class="cta-icon icon-jobs">
+                                    <img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
+                                </div><!-- cta-icon -->
+                                <h3 th:text="${centralJobsCount}">3,412</h3>
+                                <h4>Central Government Jobs</h4>
+                            </div>
+                        </a>
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-						<div class="single-cta">
-							<!-- cta-icon -->
-							<div class="cta-icon icon-company">
-								<img src="images/icon/32.png" th:src="@{/images/icon/32.png}" alt="Icon" class="img-responsive"/>
-							</div><!-- cta-icon -->
-							<h3 th:text="${stateJobsCount}">12,043</h3>
-							<h4>State Government Jobs</h4>
-						</div>
+                        <a href="job-list/type?searchKey=State%20Government">
+                            <div class="single-cta">
+                                <!-- cta-icon -->
+                                <div class="cta-icon icon-company">
+                                    <img src="images/icon/32.png" th:src="@{/images/icon/32.png}" alt="Icon" class="img-responsive"/>
+                                </div><!-- cta-icon -->
+                                <h3 th:text="${stateJobsCount}">12,043</h3>
+                                <h4>State Government Jobs</h4>
+                            </div>
+                        </a>
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-						<div class="single-cta">
-							<div class="cta-icon icon-candidate">
-								<img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
-							</div><!-- cta-icon -->
-							<h3 th:text="${otherJobsCount}">5,798,298</h3>
-							<h4>PSU &amp; Other States Jobs</h4>
-						</div>
+                        <a href="job-list/type?searchKey=PSU%20&amp;%20Other%20States">
+                            <div class="single-cta">
+                                <div class="cta-icon icon-candidate">
+                                    <img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
+                                </div><!-- cta-icon -->
+                                <h3 th:text="${otherJobsCount}">5,798,298</h3>
+                                <h4>PSU &amp; Other States Jobs</h4>
+                            </div>
+                        </a>
 					</div><!-- single-cta -->
 				</div><!-- row -->
 			</div><!-- cta -->
