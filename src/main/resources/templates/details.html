@@ -63,14 +63,14 @@
 						</div>
 
 						<div class="ad-info">
-							<span><span><a href="#" class="title">Human Resource Manager</a></span> @ <a href="#"> Dropbox Inc</a></span>
+							<span th:text="${jobDetailsView.headline}"><span><a href="#" class="title">Human Resource Manager</a></span> @ <a href="#"> Dropbox Inc</a></span>
 							<div class="ad-meta">
 								<ul>
-									<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US</a></li>
-									<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-									<li><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</li>
-									<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-									<li><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : Jan 10, 2017</li>
+									<li th:text="${jobDetailsView.location}"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US</a></li>
+									<li th:text="${jobDetailsView.jobType}"><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
+									<li th:text="${jobDetailsView.salary}"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</li>
+									<li th:text="${jobDetailsView.jobSector}"><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
+									<li th:text="${jobDetailsView.deadLine}"><i class="fa fa-hourglass-start" aria-hidden="true"></i>Application Deadline : Jan 10, 2017</li>
 								</ul>
 							</div><!-- ad-meta -->
 						</div><!-- ad-info -->
@@ -83,8 +83,7 @@
 							<div class="section job-description">
 								<div class="description-info">
 									<h1>Description</h1>
-									<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
-									<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni।</p>
+									<p><span th:text="${jobDetailsView.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
 								</div>
 								<div class="responsibilities">
 									<h1>Key Responsibilities:</h1>
