@@ -1,5 +1,6 @@
 package com.factly.jobportal.controller;
 
+import com.factly.jobportal.web.view.JobListView;
 import com.factly.jobportal.webhandler.JobNotificationWebHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ public class JobPortalHomePageController {
     private static final String JOB_NOTIFICATION_PAGE = "job-list";
     private static final String ABOUT_US_PAGE = "about-us";
     private static final String SIGN_IN_PAGE = "signin";
-	private static final String JOB_NOTIFICATION = "jobNotification";
+	private static final String JOB_NOTIFICATION = "jobListView";
 
 	@Autowired
     private JobNotificationWebHandler jobNotificationWebHandler;
@@ -45,7 +46,8 @@ public class JobPortalHomePageController {
         model.addAttribute("otherSectorJobsCount", jobNotificationWebHandler.getOtherSectorJobsCount());
 
         //
-        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByDate(pageable));
+        JobListView jobListView = jobNotificationWebHandler.getJobNotificationsByDate(pageable);
+        model.addAttribute(JOB_NOTIFICATION, jobListView);
         return HOME_PAGE;
     }
 
@@ -63,10 +65,10 @@ public class JobPortalHomePageController {
         return JOB_NOTIFICATION_PAGE;
     }
 
-    @RequestMapping(value= "/job-list/type", method = RequestMethod.GET)
-    public String searchByClient(Model model, Pageable pageable, @RequestParam("searchKey") String searchKey) {
+    @RequestMapping(value= "/job-list/client-type", method = RequestMethod.GET)
+    public String searchByClient(Model model, Pageable pageable, @RequestParam("value") String clientType) {
 
-        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByClientType(searchKey, pageable));
+        model.addAttribute(JOB_NOTIFICATION, jobNotificationWebHandler.getJobNotificationsByClientType(clientType, pageable));
         return JOB_NOTIFICATION_PAGE;
     }
 

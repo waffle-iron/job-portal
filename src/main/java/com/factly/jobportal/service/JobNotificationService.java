@@ -1,5 +1,6 @@
 package com.factly.jobportal.service;
 
+import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.web.domain.JobsCount;
 
@@ -51,16 +52,16 @@ public interface JobNotificationService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<JobNotificationDTO> search(String query, Pageable pageable);
+    JobListDTO search(String query, Pageable pageable);
 
     JobsCount findJobsCount(String jobType);
 
     JobsCount findSectorJobsCount(String sector);
 
-    Page<JobNotificationDTO> findJobByClientType(String query, Pageable pageable);
+    JobListDTO findJobByClientType(String query, Pageable pageable);
 
     @Transactional(readOnly = true)
-    Page<JobNotificationDTO> findJobsByNotificationDate(Pageable pageable);
+    JobListDTO findJobsByNotificationDate(Pageable pageable);
 
     JobNotificationDTO findJobNotificationById(Long id);
 }
