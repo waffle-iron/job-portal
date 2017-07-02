@@ -58,10 +58,15 @@ public interface JobNotificationService {
 
     JobsCount findSectorJobsCount(String sector);
 
-    JobListDTO findJobByClientType(String query, Pageable pageable);
+    @Transactional(readOnly = true)
+    JobListDTO findJobNotificationsCountByClientTypeAndJobSector(Pageable pageable);
+
+    JobListDTO findJobNotificationsByClientType(String query, Pageable pageable);
 
     @Transactional(readOnly = true)
-    JobListDTO findJobsByNotificationDate(Pageable pageable);
+    JobListDTO findJobNotificationsByDate(Pageable pageable);
 
     JobNotificationDTO findJobNotificationById(Long id);
+
+    JobListDTO findJobNotificationsByJobSector(String jobSector, Pageable pageable);
 }

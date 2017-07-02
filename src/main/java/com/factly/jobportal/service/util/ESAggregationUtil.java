@@ -6,10 +6,12 @@ import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.InternalAggregations;
 import org.elasticsearch.search.aggregations.bucket.nested.InternalNested;
+import org.elasticsearch.search.aggregations.bucket.nested.InternalReverseNested;
 import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.StringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
+import org.elasticsearch.search.aggregations.metrics.sum.InternalSum;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,25 +64,125 @@ public class ESAggregationUtil {
         return finalResult;
     }
 
-    public static Map<String, Long> iterateNestedAggregationResults(String nestedObjectName,
+    public static void iterateNestedAggregationResults(String nestedObjectName,
                                                        String nestedObjectPropertyName,
+                                                       JobListDTO jobListDTO,
                                                        Map<String, Aggregation> result) {
+        result.forEach((k, v) -> {
+
+            try {
+                Map<String, Long> finalResult = new HashMap<>();
+
+                InternalNested in = (InternalNested)result.get(k);
+                InternalAggregations aggs = in.getAggregations();
+
+                Map<String, Aggregation> innerAggs = aggs.getAsMap();
+
+                innerAggs.forEach((k1, v1) -> {
+                    StringTerms agg = (StringTerms)aggs.getAsMap().get(k1);
+                    List<Terms.Bucket> buckets = agg.getBuckets();
+                    for (Terms.Bucket entry : buckets) {
+                        String key = (String) entry.getKey();      // Term
+                        Long count = entry.getDocCount(); // Doc count
+
+                        finalResult.put(key, count);
+                    }
+                });
+                collectAggregationResults(finalResult, jobListDTO, k);
+            } catch (ClassCastException cce) {
+                Map<String, Long> finalResult = new HashMap<>();
+
+                StringTerms topTags = (StringTerms) result.get(k);
+                List<Terms.Bucket> buckets = topTags.getBuckets();
+                for (Terms.Bucket entry : buckets) {
+                    String key = (String) entry.getKey();      // Term
+                    Long count = entry.getDocCount(); // Doc count
+
+                    finalResult.put(key, count);
+                }
+                collectAggregationResults(finalResult, jobListDTO, k);
+            }
+        });
+    }
+
+    public static void iterateReverseNestedAggregationResults(JobListDTO jobListDTO,
+                                                       Map<String, Aggregation> result) {
+        result.forEach((k, v) -> {
+            Map<String, Long> finalResult = new HashMap<>();
+
+            InternalNested in = (InternalNested)result.get(k);
+            InternalAggregations aggs = in.getAggregations();
+
+            Map<String, Aggregation> innerAggs = aggs.getAsMap();
+            innerAggs.forEach((k1, v1) -> {
+                StringTerms agg = (StringTerms)aggs.getAsMap().get(k1);
+                List<Terms.Bucket> buckets = agg.getBuckets();
+                for (Terms.Bucket entry : buckets) {
+                    String key = (String) entry.getKey();      // Term
+                    Long count = entry.getDocCount(); // Doc count
+
+                    InternalReverseNested innerReverseNestedAgg = (InternalReverseNested)entry.getAggregations().asList().get(0);
+                    InternalSum internalSum = (InternalSum)innerReverseNestedAgg.getAggregations().asList().get(0);
+                    Double sum = internalSum.getValue();
+                    finalResult.put(key, sum.longValue());
+
+                }
+            });
+            collectReverseNestedAggregationResults(finalResult, jobListDTO, k);
+
+        });
+    }
+
+    public static List<AbstractAggregationBuilder> createClientTypeAndJobSectorAggregation() {
+
+        String nestedObjectName = "clientType";
+        String nestedObjectPropertyName = "type";
+        String reverseNestedPropertyName = "totalVacancyCount";
+
         String outerAggregationName = nestedObjectName + "Agg";
+        String outerReverseAggregationName = nestedObjectName + "_" + reverseNestedPropertyName;
+        String outerReverseAggregationStatName = reverseNestedPropertyName + "Sum";
         String innerAggregationName = nestedObjectName + "_" + nestedObjectPropertyName + "Agg";
-        Map<String, Long> finalResult = new HashMap<>();
 
-        InternalNested in = (InternalNested)result.get(outerAggregationName);
-        InternalAggregations aggs = in.getAggregations();
-        StringTerms agg = (StringTerms)aggs.getAsMap().get(innerAggregationName);
-        List<Terms.Bucket> buckets = agg.getBuckets();
-        for (Terms.Bucket entry : buckets) {
-            String key = (String) entry.getKey();      // Term
-            Long count = entry.getDocCount(); // Doc count
 
-            finalResult.put(key, count);
-        }
+        NestedBuilder clientTypeAggregation = AggregationBuilders
+            .nested(outerAggregationName)
+            .path(nestedObjectName)
+            .subAggregation(
+                AggregationBuilders
+                    .terms(innerAggregationName)
+                    .field(nestedObjectName+"."+nestedObjectPropertyName)
+                .subAggregation(
+                    AggregationBuilders.reverseNested(outerReverseAggregationName)
+                    .subAggregation(AggregationBuilders.sum(outerReverseAggregationStatName).field(reverseNestedPropertyName)))
+            );
 
-        return finalResult;
+        nestedObjectName = "jobSector";
+        nestedObjectPropertyName = "sector";
+        reverseNestedPropertyName = "totalVacancyCount";
+
+        outerAggregationName = nestedObjectName + "Agg";
+        outerReverseAggregationName = nestedObjectName + "_" + reverseNestedPropertyName;
+        outerReverseAggregationStatName = reverseNestedPropertyName + "Sum";
+        innerAggregationName = nestedObjectName + "_" + nestedObjectPropertyName + "Agg";
+
+
+        NestedBuilder jobSectorAggregation = AggregationBuilders
+            .nested(outerAggregationName)
+            .path(nestedObjectName)
+            .subAggregation(
+                AggregationBuilders
+                    .terms(innerAggregationName)
+                    .field(nestedObjectName+"."+nestedObjectPropertyName)
+                    .subAggregation(
+                        AggregationBuilders.reverseNested(outerReverseAggregationName)
+                            .subAggregation(AggregationBuilders.sum(outerReverseAggregationStatName).field(reverseNestedPropertyName)))
+            );
+
+        List<AbstractAggregationBuilder> aggs = new ArrayList<>();
+        aggs.add(clientTypeAggregation);
+        aggs.add(jobSectorAggregation);
+        return aggs;
     }
 
     public static List<AbstractAggregationBuilder> createAggregations() {
@@ -111,29 +213,33 @@ public class ESAggregationUtil {
         return aggs;
     }
 
-    public static void collectAggregationResults(Map<String, Aggregation> result, JobListDTO jobListDTO) {
+    public static void collectReverseNestedAggregationResults(Map<String, Long> result, JobListDTO jobListDTO, String propertyName) {
+
+        if("clientTypeAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setClientTypeReverseNestedAggregations(result);
+        } else if("jobSectorAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setJobSectorReverseNestedAggregations(result);
+        }
+    }
+
+    public static void collectAggregationResults(Map<String, Long> result, JobListDTO jobListDTO, String propertyName) {
 
 
-        jobListDTO.setClientTypeAggregations(
-            iterateNestedAggregationResults("clientType", "type", result));
-
-        jobListDTO.setJobSectorAggregations(
-            iterateNestedAggregationResults("jobSector","sector", result));
-
-        jobListDTO.setJobTypeAggregations(
-            iterateNestedAggregationResults("jobType", "type", result));
-
-        jobListDTO.setEducationAggregations(
-            iterateNestedAggregationResults("education", "education", result));
-
-        jobListDTO.setOrganizationAggregations(
-            iterateAggregationResults("organization", result));
-
-        jobListDTO.setJobRoleAggregations(
-            iterateAggregationResults("jobRole", result));
-
-        jobListDTO.setJobLocationAggregations(
-            iterateAggregationResults("jobLocation", result));
+        if("clientTypeAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setClientTypeAggregations(result);
+        } else if("jobSectorAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setJobSectorAggregations(result);
+        } else if("jobTypeAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setJobTypeAggregations(result);
+        } else if("educationAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setEducationAggregations(result);
+        } else if("organizationAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setOrganizationAggregations(result);
+        } else if("jobRoleAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setJobRoleAggregations(result);
+        } else if("jobLocationAgg".equalsIgnoreCase(propertyName)) {
+            jobListDTO.setJobLocationAggregations(result);
+        }
 
     }
 }

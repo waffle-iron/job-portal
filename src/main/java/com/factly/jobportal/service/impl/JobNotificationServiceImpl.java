@@ -31,8 +31,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import static com.factly.jobportal.service.util.ESAggregationUtil.collectAggregationResults;
-import static com.factly.jobportal.service.util.ESAggregationUtil.createAggregations;
+import static com.factly.jobportal.service.util.ESAggregationUtil.*;
 
 /**
  * Service Implementation for managing JobNotification.
@@ -118,15 +117,51 @@ public class JobNotificationServiceImpl implements JobNotificationService{
 
     @Override
     @Transactional(readOnly = true)
-    public JobListDTO findJobByClientType(String type, Pageable pageable) {
+    public JobListDTO findJobNotificationsCountByClientTypeAndJobSector(Pageable pageable) {
+        log.debug("Request to search for a page of JobNotifications for query {}");
+
+        //QueryBuilder queryBuilder = QueryBuilders
+        //    .nestedQuery("clientType", QueryBuilders.matchAllQuery());
+
+        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        List<AbstractAggregationBuilder> aggs = createClientTypeAndJobSectorAggregation();
+
+
+        JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
+
+        if(aggs != null) {
+            iterateReverseNestedAggregationResults(jobListDTO, jobListDTO.getAggregations());
+        }
+
+        return jobListDTO;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public JobListDTO findJobNotificationsByClientType(String type, Pageable pageable) {
         log.debug("Request to search for a page of JobNotifications for query {}", type);
         QueryBuilder queryBuilder = QueryBuilders
             .nestedQuery("clientType", QueryBuilders.matchQuery("clientType.type", type));
+        List<AbstractAggregationBuilder> aggs = createAggregations();
 
-        //QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery(type, "clientType.type");
+        JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
+        iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+        return jobListDTO;
+    }
 
-        JobListDTO jobListDTO = findApplicableJobsByNotificationDate(pageable, queryBuilder);
-        //Page<JobNotification> result = jobNotificationSearchRepository.findByClientTypeType(type, pageable);
+    @Override
+    @Transactional(readOnly = true)
+    public JobListDTO findJobNotificationsByJobSector(String type, Pageable pageable) {
+        log.debug("Request to search for a page of JobNotifications for query {}", type);
+        QueryBuilder queryBuilder = QueryBuilders
+            .nestedQuery("jobSector", QueryBuilders.matchQuery("jobSector.sector", type));
+        List<AbstractAggregationBuilder> aggs = createAggregations();
+
+        JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
+
+        if(aggs != null) {
+            iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+        }
         return jobListDTO;
     }
 
@@ -143,23 +178,38 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         log.debug("Request to search for a page of JobNotifications for query {}", query);
 
         if(query.isEmpty()) {
-            return findJobsByNotificationDate(pageable);
+            return findJobNotificationsByDate(pageable);
         } else {
             QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery(query, ALL_FIELDS);
-            return findApplicableJobsByNotificationDate(pageable, queryBuilder);
+            List<AbstractAggregationBuilder> aggs = createAggregations();
+            JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
+
+            if(aggs != null) {
+                iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+            }
+            return jobListDTO;
         }
     }
 
     @Override
     @Transactional(readOnly = true)
-    public JobListDTO findJobsByNotificationDate(Pageable pageable) {
+    public JobListDTO findJobNotificationsByDate(Pageable pageable) {
         log.debug("Request to search for a page of JobNotifications for query {}");
 
         QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
-        return findApplicableJobsByNotificationDate(pageable, queryBuilder);
+        List<AbstractAggregationBuilder> aggs = createAggregations();
+
+        JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
+
+        if(aggs != null) {
+            iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+        }
+        return jobListDTO;
     }
 
-    private JobListDTO findApplicableJobsByNotificationDate(Pageable pageable, QueryBuilder query) {
+    private JobListDTO findJobNotificationsByDeadlineDate(Pageable pageable,
+                                                          QueryBuilder query,
+                                                          List<AbstractAggregationBuilder> aggs) {
 
         JobListDTO jobListDTO = new JobListDTO();
 
@@ -167,7 +217,6 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         RangeQueryBuilder rangeQuery = QueryBuilders.rangeQuery("applicationDeadline");
         rangeQuery.gte(LocalDate.now());
 
-        List<AbstractAggregationBuilder> aggs = createAggregations();
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder()
             .withQuery(query)
             .withPageable(pageable).withFilter(rangeQuery)
@@ -175,21 +224,25 @@ public class JobNotificationServiceImpl implements JobNotificationService{
                 SortBuilders
                     .fieldSort("notificationDate")
                     .order(SortOrder.DESC));
-        aggs.forEach(agg -> queryBuilder.addAggregation(agg));
+
+        if(aggs != null) {
+            aggs.forEach(agg -> queryBuilder.addAggregation(agg));
+        }
         SearchQuery searchQuery = queryBuilder.build();
 
         // set notifications
         Page<JobNotification> notifications = jobNotificationSearchRepository.search(searchQuery);
         jobListDTO.setNotificationsPage(notifications.map(jobNotificationMapper::toDto));
 
-        // collect the aggregation results
-        elasticsearchTemplate.putMapping(JobNotification.class);
-        elasticsearchTemplate.refresh(JobNotification.class);
-        Aggregations aggregations = elasticsearchTemplate.query(searchQuery,
-            response -> response.getAggregations());
-        Map<String, Aggregation> result = aggregations.asMap();
-        collectAggregationResults(result, jobListDTO);
-
+        if(aggs != null) {
+            // collect the aggregation results
+            elasticsearchTemplate.putMapping(JobNotification.class);
+            elasticsearchTemplate.refresh(JobNotification.class);
+            Aggregations aggregations = elasticsearchTemplate.query(searchQuery,
+                response -> response.getAggregations());
+            Map<String, Aggregation> result = aggregations.asMap();
+            jobListDTO.setAggregations(result);
+        }
         return jobListDTO;
     }
 
