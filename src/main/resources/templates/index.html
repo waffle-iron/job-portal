@@ -67,7 +67,7 @@
 			<div class="section cta cta-two text-center">
 				<div class="row">
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=Central%20Government">
+                        <a href="job-list/client-type?value=Central%20Government">
                             <div class="single-cta">
                                 <div class="cta-icon icon-jobs">
                                     <img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
@@ -79,7 +79,7 @@
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=State%20Government">
+                        <a href="job-list/client-type?value=State%20Government">
                             <div class="single-cta">
                                 <!-- cta-icon -->
                                 <div class="cta-icon icon-company">
@@ -92,7 +92,7 @@
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=PSU%20&amp;%20Other%20States">
+                        <a href="job-list/client-type?value=PSU%20&amp;%20Other%20States">
                             <div class="single-cta">
                                 <div class="cta-icon icon-candidate">
                                     <img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
@@ -242,13 +242,13 @@
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in" id="recent-jobs">
                         <!-- jobs -->
-                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${jobNotification}">joblist</div>
+                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${jobListView}">joblist</div>
                         <!-- jobs -->
 					</div><!-- tab-pane -->
 
 					<div role="tabpanel" class="tab-pane fade in active" id="popular-jobs">
                         <!-- jobs -->
-                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${jobNotification}">joblist</div>
+                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${jobListView}">joblist</div>
                         <!-- jobs -->
 					</div><!-- tab-pane -->
 				</div><!-- tab-content -->

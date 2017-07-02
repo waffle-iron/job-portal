@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -41,15 +44,30 @@ public class JobNotification implements Serializable {
     @NotNull
     @Size(max = 250)
     @Column(name = "jhi_organization", length = 250, nullable = false)
+    @Field(
+        type = FieldType.String,
+        index = FieldIndex.not_analyzed,
+        store = true
+    )
     private String organization;
 
     @NotNull
     @Size(max = 100)
     @Column(name = "job_role", length = 100, nullable = false)
+    @Field(
+        type = FieldType.String,
+        index = FieldIndex.not_analyzed,
+        store = true
+    )
     private String jobRole;
 
     @Size(max = 250)
     @Column(name = "job_location", length = 250)
+    @Field(
+        type = FieldType.String,
+        index = FieldIndex.not_analyzed,
+        store = true
+    )
     private String jobLocation;
 
     @NotNull
@@ -93,17 +111,29 @@ public class JobNotification implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
+    @Field(
+        type = FieldType.Nested
+    )
     private ClientType clientType;
 
     @ManyToOne(optional = false)
     @NotNull
+    @Field(
+        type = FieldType.Nested
+    )
     private JobSector jobSector;
 
     @ManyToOne(optional = false)
     @NotNull
+    @Field(
+        type = FieldType.Nested
+    )
     private JobType jobType;
 
     @ManyToOne
+    @Field(
+        type = FieldType.Nested
+    )
     private Education education;
 
     @ManyToMany

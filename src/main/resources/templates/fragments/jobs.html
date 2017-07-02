@@ -1,6 +1,6 @@
 
 <div th:fragment="joblist">
-    <div class="job-ad-item" th:each="notificationView : ${jobNotificationRef}">
+    <div class="job-ad-item" th:each="notificationView : ${jobNotificationRef.notifications}">
         <div class="item-info">
             <div class="item-image-box">
                 <div class="item-image">
