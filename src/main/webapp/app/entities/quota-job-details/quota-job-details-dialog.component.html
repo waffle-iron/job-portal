@@ -74,7 +74,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="jobportalApp.quotaJobDetails.bornAfter" for="field_bornAfter">Born After</label>
             <div class="input-group">
-                <input id="field_bornAfter" type="text" class="form-control" name="bornAfter" ngbDatepicker  #bornAfterDp="ngbDatepicker" [(ngModel)]="quotaJobDetails.bornAfter"
+                <input id="field_bornAfter" type="text" class="form-control" name="bornAfter"  ngbDatepicker  #bornAfterDp="ngbDatepicker" [(ngModel)]="quotaJobDetails.bornAfter"
                 required/>
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" (click)="bornAfterDp.toggle()"><i class="fa fa-calendar"></i></button>
