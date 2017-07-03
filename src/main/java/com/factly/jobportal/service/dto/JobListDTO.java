@@ -1,5 +1,6 @@
 package com.factly.jobportal.service.dto;
 
+import org.elasticsearch.search.aggregations.Aggregation;
 import org.springframework.data.domain.Page;
 
 import java.util.Map;
@@ -10,6 +11,9 @@ import java.util.Map;
 public class JobListDTO {
     private Page<JobNotificationDTO> notificationsPage;
 
+    private Map<String, Long> clientTypeReverseNestedAggregations;
+    private Map<String, Long> jobSectorReverseNestedAggregations;
+
     private Map<String, Long> clientTypeAggregations;
     private Map<String, Long> jobSectorAggregations;
     private Map<String, Long> jobTypeAggregations;
@@ -17,6 +21,32 @@ public class JobListDTO {
     private Map<String, Long> organizationAggregations;
     private Map<String, Long> jobRoleAggregations;
     private Map<String, Long> jobLocationAggregations;
+
+    private Map<String, Aggregation> aggregations;
+
+    public Map<String, Long> getClientTypeReverseNestedAggregations() {
+        return clientTypeReverseNestedAggregations;
+    }
+
+    public void setClientTypeReverseNestedAggregations(Map<String, Long> clientTypeReverseNestedAggregations) {
+        this.clientTypeReverseNestedAggregations = clientTypeReverseNestedAggregations;
+    }
+
+    public Map<String, Long> getJobSectorReverseNestedAggregations() {
+        return jobSectorReverseNestedAggregations;
+    }
+
+    public void setJobSectorReverseNestedAggregations(Map<String, Long> jobSectorReverseNestedAggregations) {
+        this.jobSectorReverseNestedAggregations = jobSectorReverseNestedAggregations;
+    }
+
+    public Map<String, Aggregation> getAggregations() {
+        return aggregations;
+    }
+
+    public void setAggregations(Map<String, Aggregation> aggregations) {
+        this.aggregations = aggregations;
+    }
 
     public Page<JobNotificationDTO> getNotificationsPage() {
         return notificationsPage;
