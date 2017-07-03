@@ -5,12 +5,14 @@ import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.web.view.JobListView;
 import com.factly.jobportal.web.view.JobNotificationView;
+import com.factly.jobportal.web.view.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class JobNotificationWebHandler {
@@ -39,6 +41,12 @@ public class JobNotificationWebHandler {
     public Object getJobNotificationsByJobSector(String jobSector, Pageable pageable) {
         JobListDTO jobListDTO = jobNotificationService.findJobNotificationsByJobSector(jobSector, pageable);
         return buildJobListView(jobListDTO);
+    }
+
+
+    public List<Tag> getJobNotificationsTags(String tagName) {
+        List<Tag> result = jobNotificationService.findJobNotificationTags(tagName);
+        return result;
     }
 
     private JobListView buildJobListView(JobListDTO jobListDTO) {
@@ -70,4 +78,5 @@ public class JobNotificationWebHandler {
         }
         return jobNotificationViews;
     }
+
 }

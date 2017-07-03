@@ -1,0 +1,80 @@
+{
+    "jobs" : {
+        "mappings" : {
+            "jobs" : {
+                "properties" : {
+                    "applicationLink" : {
+                        "type" : "string"
+                    },
+                    "clientType" : {
+                        "type" : "nested",
+                        "properties" : {
+                            "id" : {
+                                "type" : "long"
+                            },
+                            "type" : {
+                                "type" : "string",
+                                "index" : "not_analyzed",
+                                "store" : true
+                            }
+                        }
+                    },
+                    "description" : {
+                        "type" : "string"
+                    },
+                    "education" : {
+                        "type" : "string"
+                    },
+                    "examLocation" : {
+                        "type" : "string"
+                    },
+                    "headline" : {
+                        "type" : "string"
+                    },
+                    "id" : {
+                        "type" : "long"
+                    },
+                    "jobLocation" : {
+                        "type" : "string"
+                    },
+                    "jobRole" : {
+                        "type" : "string"
+                    },
+                    "jobSector" : {
+                        "type" : "string",
+                        "index" : "not_analyzed",
+                        "store" : true
+                    },
+                    "jobType" : {
+                        "type" : "string"
+                    },
+                    "maxSal" : {
+                        "type" : "double"
+                    },
+                    "minSal" : {
+                        "type" : "double"
+                    },
+                    "notificationDate" : {
+                        "type" : "long"
+                    },
+                    "notificationLink" : {
+                        "type" : "string"
+                    },
+                    "organization" : {
+                        "type" : "string"
+                    },
+                    "vacancyCount" : {
+                        "type" : "long"
+                    },
+                    "workExperience" : {
+                        "type" : "long"
+                    },
+                    "suggest": {
+                        "type": "completion",
+                        "payloads": true
+                    }
+                }
+            }
+        }
+    }
+}

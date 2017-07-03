@@ -3,10 +3,8 @@ package com.factly.jobportal.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldIndex;
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.*;
+import org.springframework.data.elasticsearch.core.completion.Completion;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -22,10 +20,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "job_notification")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "jobnotification")
+@Document(indexName = "jobnotification",  refreshInterval = "-1")
+//@Mapping(mappingPath = "/es-mapping/textvalue-mapping.json")
+//@Setting("")
 public class JobNotification implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+
+    //@CompletionField(payloads = true, maxInputLength = 100)
+    //transient private Completion suggest;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
@@ -35,6 +39,7 @@ public class JobNotification implements Serializable {
     @NotNull
     @Size(max = 500)
     @Column(name = "headline", length = 500, nullable = false)
+
     private String headline;
 
     @NotNull
@@ -171,6 +176,14 @@ public class JobNotification implements Serializable {
                joinColumns = @JoinColumn(name="job_notifications_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="language_proficiencies_id", referencedColumnName="id"))
     private Set<Language> languageProficiencies = new HashSet<>();
+//
+//    public Completion getSuggest() {
+//        return suggest;
+//    }
+//
+//    public void setSuggest(Completion suggest) {
+//        this.suggest = suggest;
+//    }
 
     public Long getId() {
         return id;

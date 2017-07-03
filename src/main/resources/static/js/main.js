@@ -18,10 +18,27 @@ jQuery(function ($) {
 
 
     // -------------------------------------------------------------
-    //  Show 
+    //  Show
     // -------------------------------------------------------------
 
     (function() {
+
+        $(document).ready(function() {
+
+            $('#w-input-search').autocomplete({
+                serviceUrl: '/job-portal/getTags',
+                paramName: "tagName",
+                delimiter: ",",
+                transformResult: function(response) {
+                    return {
+                        suggestions: $.map($.parseJSON(response), function(item) {
+                            return { value: item.tagName, data: item.id };
+                        })
+                    };
+                }
+            });
+        });
+
 
         $("document").ready(function()
             {
@@ -53,8 +70,8 @@ jQuery(function ($) {
                     });
             });
 
-    }());    
-    
+    }());
+
 
     // -------------------------------------------------------------
     //  Slider
@@ -64,9 +81,9 @@ jQuery(function ($) {
 
         $('#price').slider();
 
-    }());   
-	
-    
+    }());
+
+
     // -------------------------------------------------------------
     //  language Select
     // -------------------------------------------------------------
@@ -82,13 +99,13 @@ jQuery(function ($) {
         });
 
     }());
-   
+
 
     // -------------------------------------------------------------
     // Accordion
     // -------------------------------------------------------------
 
-        (function () {  
+        (function () {
             $('.collapse').on('show.bs.collapse', function() {
                 var id = $(this).attr('id');
                 $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
@@ -117,9 +134,9 @@ jQuery(function ($) {
             }
         });
 
-    }()); 
-	
-	
+    }());
+
+
 	 // -------------------------------------------------------------
     //  select-category Change
     // -------------------------------------------------------------
@@ -133,6 +150,6 @@ jQuery(function ($) {
 		$(this).closest('li').addClass('link-active');
 	});
 
-   
+
 // script end
 });

@@ -166,7 +166,6 @@ public class ESAggregationUtil {
         outerReverseAggregationStatName = reverseNestedPropertyName + "Sum";
         innerAggregationName = nestedObjectName + "_" + nestedObjectPropertyName + "Agg";
 
-
         NestedBuilder jobSectorAggregation = AggregationBuilders
             .nested(outerAggregationName)
             .path(nestedObjectName)

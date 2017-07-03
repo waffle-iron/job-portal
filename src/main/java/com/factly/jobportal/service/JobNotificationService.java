@@ -4,9 +4,13 @@ import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.web.domain.JobsCount;
 
+import com.factly.jobportal.web.view.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Service Interface for managing JobNotification.
@@ -69,4 +73,6 @@ public interface JobNotificationService {
     JobNotificationDTO findJobNotificationById(Long id);
 
     JobListDTO findJobNotificationsByJobSector(String jobSector, Pageable pageable);
+
+    List<Tag> findJobNotificationTags(String tagName);
 }

@@ -8,6 +8,8 @@ import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.service.mapper.JobNotificationMapper;
 import com.factly.jobportal.web.domain.JobsCount;
+import com.factly.jobportal.web.view.Tag;
+import org.elasticsearch.action.suggest.SuggestResponse;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
@@ -16,6 +18,8 @@ import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.search.suggest.completion.CompletionSuggestion;
+import org.elasticsearch.search.suggest.completion.CompletionSuggestionFuzzyBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -271,5 +276,51 @@ public class JobNotificationServiceImpl implements JobNotificationService{
     @Transactional(readOnly = true)
     public JobsCount findSectorJobsCount(String sector) {
         return jobNotificationRepository.retrieveSectorJobsCount(sector);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Tag> findJobNotificationTags(String tagName) {
+
+        elasticsearchTemplate.putMapping(JobNotification.class);
+        elasticsearchTemplate.refresh(JobNotification.class);
+
+        CompletionSuggestionFuzzyBuilder completionSuggestionFuzzyBuilder = new CompletionSuggestionFuzzyBuilder("test-suggest")
+            .text(tagName)
+            .field("suggest");
+
+        //when
+        SuggestResponse suggestResponse = elasticsearchTemplate.suggest(completionSuggestionFuzzyBuilder, JobNotification.class);
+        CompletionSuggestion completionSuggestion = suggestResponse.getSuggest().getSuggestion("test-suggest");
+//        List<CompletionSuggestion.Entry.Option> options = completionSuggestion.getEntries().get(0).getOptions();
+
+
+        return simulateSearchResult(tagName);
+
+    }
+
+    private List<Tag> simulateSearchResult(String tagName) {
+        List<Tag> data = new ArrayList<Tag>();
+
+        // init data for testing
+        data.add(new Tag(1, "ruby"));
+        data.add(new Tag(2, "rails"));
+        data.add(new Tag(3, "c / c++"));
+        data.add(new Tag(4, ".net"));
+        data.add(new Tag(5, "python"));
+        data.add(new Tag(6, "java"));
+        data.add(new Tag(7, "javascript"));
+        data.add(new Tag(8, "jscript"));
+
+        List<Tag> result = new ArrayList<Tag>();
+
+        // iterate a list and filter by tagName
+        for (Tag tag : data) {
+            if (tag.getTagName().contains(tagName)) {
+                result.add(tag);
+            }
+        }
+
+        return result;
     }
 }

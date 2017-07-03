@@ -30,7 +30,6 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}"/>
     <link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}"/>
     <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-touch-icon-57-precomposed.png" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}"/>
-    <!-- icons -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,6 +39,7 @@
     <![endif]-->
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 	  <script type="text/javascript" th:inline="javascript" src="../static/js/homePage.js" th:src="@{/js/homePage.js}"></script>
+
   </head>
   <body ng-app="jobPortalApp" ng-controller="HeaderController">
 	<!-- header -->
@@ -53,8 +53,8 @@
 			<h3>Government Jobs for the people of Telangana</h3>
 			<div class="banner-form">
 				<form action="/job-list">
-					<input type="text" class="form-control" placeholder="job title, keywords" name="searchKey"/>
-					<button type="submit" class="btn btn-primary" value="Find Jobs">Search</button>
+					<input type="text" class="form-control" placeholder="job title, keywords" name="searchKey" id="w-input-search"/>
+					<button type="submit" class="btn btn-primary" value="Find Jobs" id="w-button-search" >Search</button>
 				</form>
 			</div>
 		</div><!-- container -->
@@ -286,5 +286,7 @@
     <script src="..static/js/price-range.js" th:src="@{/js/price-range.js}"></script>
     <script src="..static/js/main.js" th:src="@{/js/main.js}"></script>
 	<script src="..static/js/switcher.js" th:src="@{/js/switcher.js}"></script>
+
+    <script src="..static/js/jquery.autocomplete.min.js" th:src="@{/js/jquery.autocomplete.min.js}"></script>
   </body>
 </html>
