@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -31,6 +34,11 @@ public class Education implements Serializable {
     @NotNull
     @Size(max = 100)
     @Column(name = "education", length = 100, nullable = false)
+    @Field(
+        type = FieldType.String,
+        index = FieldIndex.not_analyzed,
+        store = true
+    )
     private String education;
 
     @OneToMany(mappedBy = "education")

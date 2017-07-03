@@ -2,6 +2,7 @@ package com.factly.jobportal.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.factly.jobportal.service.JobNotificationService;
+import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.web.rest.util.HeaderUtil;
 import com.factly.jobportal.web.rest.util.PaginationUtil;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
@@ -136,13 +137,13 @@ public class JobNotificationResource {
      * @param pageable the pagination information
      * @return the result of the search
      */
-    @GetMapping("/_search/job-notifications")
-    @Timed
-    public ResponseEntity<List<JobNotificationDTO>> searchJobNotifications(@RequestParam String query, @ApiParam Pageable pageable) {
-        log.debug("REST request to search for a page of JobNotifications for query {}", query);
-        Page<JobNotificationDTO> page = jobNotificationService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/job-notifications");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
+//    @GetMapping("/_search/job-notifications")
+//    @Timed
+//    public ResponseEntity<List<JobNotificationDTO>> searchJobNotifications(@RequestParam String query, @ApiParam Pageable pageable) {
+//        log.debug("REST request to search for a page of JobNotifications for query {}", query);
+//        JobListDTO jobListDTO = jobNotificationService.search(query, pageable);
+//        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/job-notifications");
+//        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+//    }
 
 }

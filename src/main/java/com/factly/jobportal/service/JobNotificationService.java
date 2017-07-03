@@ -1,10 +1,12 @@
 package com.factly.jobportal.service;
 
+import com.factly.jobportal.service.dto.JobListDTO;
 import com.factly.jobportal.service.dto.JobNotificationDTO;
 import com.factly.jobportal.web.domain.JobsCount;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Interface for managing JobNotification.
@@ -50,13 +52,21 @@ public interface JobNotificationService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<JobNotificationDTO> search(String query, Pageable pageable);
+    JobListDTO search(String query, Pageable pageable);
 
     JobsCount findJobsCount(String jobType);
 
     JobsCount findSectorJobsCount(String sector);
 
-    Page<JobNotificationDTO> findByClientType(String query, Pageable pageable);
+    @Transactional(readOnly = true)
+    JobListDTO findJobNotificationsCountByClientTypeAndJobSector(Pageable pageable);
+
+    JobListDTO findJobNotificationsByClientType(String query, Pageable pageable);
+
+    @Transactional(readOnly = true)
+    JobListDTO findJobNotificationsByDate(Pageable pageable);
 
     JobNotificationDTO findJobNotificationById(Long id);
+
+    JobListDTO findJobNotificationsByJobSector(String jobSector, Pageable pageable);
 }

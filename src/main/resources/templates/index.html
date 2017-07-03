@@ -67,37 +67,40 @@
 			<div class="section cta cta-two text-center">
 				<div class="row">
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=Central%20Government">
+                        <a href="job-list/client-type?value=Central%20Government">
                             <div class="single-cta">
                                 <div class="cta-icon icon-jobs">
                                     <img src="images/icon/31.png" th:src="@{/images/icon/31.png}" alt="Icon" class="img-responsive"/>
                                 </div><!-- cta-icon -->
-                                <h3 th:text="${centralJobsCount}">3,412</h3>
+                                <h3 th:text="${homePageView.clientTypeAggregations.get('Central Government') != null} ?
+                                    ${homePageView.clientTypeAggregations.get('Central Government')} : '0'">0</h3>
                                 <h4>Central Government Jobs</h4>
                             </div>
                         </a>
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=State%20Government">
+                        <a href="job-list/client-type?value=State%20Government">
                             <div class="single-cta">
                                 <!-- cta-icon -->
                                 <div class="cta-icon icon-company">
                                     <img src="images/icon/32.png" th:src="@{/images/icon/32.png}" alt="Icon" class="img-responsive"/>
                                 </div><!-- cta-icon -->
-                                <h3 th:text="${stateJobsCount}">12,043</h3>
+                                <h3 th:text="${homePageView.clientTypeAggregations.get('State Government') != null} ?
+                                    ${homePageView.clientTypeAggregations.get('State Government')} : '0'">0</h3>
                                 <h4>State Government Jobs</h4>
                             </div>
                         </a>
 					</div><!-- single-cta -->
 
 					<div class="col-sm-4">
-                        <a href="job-list/type?searchKey=PSU%20&amp;%20Other%20States">
+                        <a href="job-list/client-type?value=PSU%20%26%20Other%20States">
                             <div class="single-cta">
                                 <div class="cta-icon icon-candidate">
                                     <img src="images/icon/33.png" th:src="@{/images/icon/33.png}" alt="Icon" class="img-responsive"/>
                                 </div><!-- cta-icon -->
-                                <h3 th:text="${otherJobsCount}">5,798,298</h3>
+                                <h3 th:text="${homePageView.clientTypeAggregations.get('PSU &amp; Other States') != null} ?
+                                    ${homePageView.clientTypeAggregations.get('PSU &amp; Other States')} : '0'">0</h3>
                                 <h4>PSU &amp; Other States Jobs</h4>
                             </div>
                         </a>
@@ -108,122 +111,137 @@
 			<div class="section category-items job-category-items  text-center">
 				<ul class="category-list">
 					<li class="category-item">
-						<a href="job-list.html">
+						<a href="job-list/job-sector?value=Food,%20Agriculture%20%26%20Environment">
 							<div class="category-icon"><img src="images/icon/1.png" th:src="@{/images/icon/1.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Food, Agriculture &amp; Environment</span>
-							<span class="category-quantity" th:text="'(' + ${foodAgricultureEnvironmentJobsCount} +')'">(1298)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Food, Agriculture &amp; Environment') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Food, Agriculture &amp; Environment')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Life%20Sciences%20%26%20Health Care">
 							<div class="category-icon"><img src="images/icon/2.png" th:src="@{/images/icon/2.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Life Sciences &amp; Health Care</span>
-							<span class="category-quantity" th:text="'(' + ${lifeSciencesHealthCareJobsCount} +')'">(76212)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Life Sciences &amp; Health Care') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Life Sciences &amp; Health Care')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Energy%20%26%20Power">
 							<div class="category-icon"><img src="images/icon/3.png" th:src="@{/images/icon/3.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Energy &amp; Power</span>
-							<span class="category-quantity" th:text="'(' + ${energyPowerJobsCount} +')'">(212)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Energy &amp; Power') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Energy &amp; Power')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Banking,%20Finance%20%26%20Insurance">
 							<div class="category-icon"><img src="images/icon/4.png" th:src="@{/images/icon/4.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Banking, Finance &amp; Insurance</span>
-							<span class="category-quantity" th:text="'(' + ${bankingFinanceInsuranceJobsCount} +')'">(972)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Banking, Finance &amp; Insurance') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Banking, Finance &amp; Insurance')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Technology">
 							<div class="category-icon"><img src="images/icon/5.png" th:src="@{/images/icon/5.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Technology</span>
-							<span class="category-quantity" th:text="'(' + ${technologyJobsCount} +')'">(1298)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Technology') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Technology')} + ')' : '(0)'">0</span>
 						</a>
 					</li> <!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Communications%20%26%20Media">
 							<div class="category-icon"><img src="images/icon/6.png" th:src="@{/images/icon/6.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Communications &amp; Media</span>
-							<span class="category-quantity" th:text="'(' + ${communicationsMediaJobsCount} +')'">(76212)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Communications &amp; Media') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Communications &amp; Media')} + ')' : '(0)'">0</span>
 						</a>
 					</li> <!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Tourisim">
 							<div class="category-icon"><img src="images/icon/7.png" th:src="@{/images/icon/7.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Tourisim</span>
-							<span class="category-quantity" th:text="'(' + ${tourismJobsCount} +')'">(1298)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Tourisim') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Tourisim')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Education">
 							<div class="category-icon"><img src="images/icon/8.png" th:src="@{/images/icon/8.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Education</span>
-							<span class="category-quantity" th:text="'(' + ${educationJobsCount} +')'">(76212)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Education') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Education')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Transport%20%26%20Infrastructure">
 							<div class="category-icon"><img src="images/icon/9.png" th:src="@{/images/icon/9.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Transport &amp; Infrastructure</span>
-							<span class="category-quantity" th:text="'(' + ${transportInfrastructureJobsCount} +')'">(212)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Transport &amp; Infrastructure') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Transport &amp; Infrastructure')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Law%20%26%20Judiciary">
 							<div class="category-icon"><img src="images/icon/10.png" th:src="@{/images/icon/10.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Law &amp; Judiciary</span>
-							<span class="category-quantity" th:text="'(' + ${lawJudiciaryJobsCount} +')'">(1298)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Law &amp; Judiciary') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Law &amp; Judiciary')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Military,%20Security%20%26%20Intelligence">
 							<div class="category-icon"><img src="images/icon/11.png" th:src="@{/images/icon/11.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Military, Security &amp; Intelligence</span>
-							<span class="category-quantity" th:text="'(' + ${militarySecurityIntelligenceJobsCount} +')'">(124)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Military, Security &amp; Intelligence') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Military, Security &amp; Intelligence')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Governance%20%26%20Administration">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Governance &amp; Administration</span>
-							<span class="category-quantity" th:text="'(' + ${governanceAdministrationJobsCount} +')'">(972)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Governance &amp; Administration') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Governance &amp; Administration')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Youth%20Affairs%20%26%20Sports">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Youth Affairs &amp; Sports</span>
-							<span class="category-quantity" th:text="'(' + ${youthAffairsSportsJobsCount} +')'">(972)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Youth Affairs &amp; Sports') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Youth Affairs &amp; Sports')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Manufacturing">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Manufacturing</span>
-							<span class="category-quantity" th:text="'(' + ${manufacturingJobsCount} +')'">(972)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Manufacturing') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Manufacturing')} + ')' : '(0)'">0</span>
 						</a>
 					</li><!-- category-item -->
 
 					<li class="category-item">
-						<a href="job-list.html">
+                        <a href="job-list/job-sector?value=Others">
 							<div class="category-icon"><img src="images/icon/12.png" th:src="@{/images/icon/12.png}" alt="images" class="img-responsive"/></div>
 							<span class="category-title">Others</span>
-							<span class="category-quantity" th:text="'(' + ${otherSectorJobsCount} +')'">(972)</span>
+                            <span class="category-quantity" th:text="${homePageView.jobSectorAggregations.get('Others') != null} ?
+                                    '(' + ${homePageView.jobSectorAggregations.get('Others')} + ')' : '(0)'">0</span>
 						</a>
                     </li><!-- category-item -->
 				</ul>
@@ -234,318 +252,22 @@
 					<h4>Latest Jobs</h4>
 					 <!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation"><a href="#hot-jobs" data-toggle="tab">Hot Jobs</a></li>
-						<li role="presentation"><a href="#recent-jobs" data-toggle="tab">Recent Jobs</a></li>
-						<li role="presentation" class="active"><a href="#popular-jobs" data-toggle="tab">Popular Jobs</a></li>
+                        <li role="presentation"><a href="#popular-jobs" data-toggle="tab">Popular Jobs</a></li>
+                        <li role="presentation" class="active"><a href="#recent-jobs" data-toggle="tab">Recent Jobs</a></li>
 					</ul>
 				</div>
 
 				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane fade in" id="hot-jobs">
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/3.png" th:src="@{/images/job/3.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">CTO</a> @ <a href="#">Volja Events and Entertainment</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/1.png" th:src="@{/images/job/1.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Project Manager</a> @ <a href="#">Dominos Pizza</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/2.png" th:src="@{/images/job/2.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Graphics Designer</a> @ <a href="#">AOK Security</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/4.png" th:src="@{/images/job/4.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Human Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-					</div><!-- tab-pane -->
-
 					<div role="tabpanel" class="tab-pane fade in" id="recent-jobs">
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/2.png" th:src="@{/images/job/2.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Graphics Designer</a> @ <a href="#">AOK Security</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/1.png" th:src="@{/images/job/1.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Project Manager</a> @ <a href="#">Dominos Pizza</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/4.png" th:src="@{/images/job/4.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Human Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/3.png" th:src="@{/images/job/3.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">CTO</a> @ <a href="#">Volja Events and Entertainment</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
+                        <!-- jobs -->
+                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${homePageView}">joblist</div>
+                        <!-- jobs -->
 					</div><!-- tab-pane -->
 
 					<div role="tabpanel" class="tab-pane fade in active" id="popular-jobs">
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/1.png" th:src="@{/images/job/1.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Project Manager</a> @ <a href="#">Dominos Pizza</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/2.png" th:src="@{/images/job/2.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Graphics Designer</a> @ <a href="#">AOK Security</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/3.png" th:src="@{/images/job/3.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">CTO</a> @ <a href="#">Volja Events and Entertainment</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
-
-						<div class="job-ad-item">
-							<div class="item-info">
-								<div class="item-image-box">
-									<div class="item-image">
-										<a href="job-details.html"><img src="images/job/4.png" th:src="@{/images/job/4.png}" alt="Image" class="img-responsive"/></a>
-									</div><!-- item-image -->
-								</div>
-
-								<div class="ad-info">
-									<span><a href="job-details.html" class="title">Human Resource Manager</a> @ <a href="#">Dropbox Inc</a></span>
-									<div class="ad-meta">
-										<ul>
-											<li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>San Francisco, CA, US </a></li>
-											<li><a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i>Full Time</a></li>
-											<li><a href="#"><i class="fa fa-money" aria-hidden="true"></i>$25,000 - $35,000</a></li>
-											<li><a href="#"><i class="fa fa-tags" aria-hidden="true"></i>HR/Org. Development</a></li>
-										</ul>
-									</div><!-- ad-meta -->
-								</div><!-- ad-info -->
-								<div class="button">
-									<a href="#" class="btn btn-primary">View Details</a>
-								</div>
-							</div><!-- item-info -->
-						</div><!-- ad-item -->
+                        <!-- jobs -->
+                        <div th:include="fragments/jobs :: joblist" th:with="jobNotificationRef=${homePageView}">joblist</div>
+                        <!-- jobs -->
 					</div><!-- tab-pane -->
 				</div><!-- tab-content -->
 			</div>
