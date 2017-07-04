@@ -64,9 +64,7 @@ public class ESAggregationUtil {
         return finalResult;
     }
 
-    public static void iterateNestedAggregationResults(String nestedObjectName,
-                                                       String nestedObjectPropertyName,
-                                                       JobListDTO jobListDTO,
+    public static void iterateNestedAggregationResults(JobListDTO jobListDTO,
                                                        Map<String, Aggregation> result) {
         result.forEach((k, v) -> {
 

@@ -145,7 +145,7 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         List<AbstractAggregationBuilder> aggs = createAggregations();
 
         JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
-        iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+        iterateNestedAggregationResults(jobListDTO, jobListDTO.getAggregations());
         return jobListDTO;
     }
 
@@ -160,7 +160,7 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
 
         if(aggs != null) {
-            iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+            iterateNestedAggregationResults(jobListDTO, jobListDTO.getAggregations());
         }
         return jobListDTO;
     }
@@ -185,7 +185,7 @@ public class JobNotificationServiceImpl implements JobNotificationService{
             JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
 
             if(aggs != null) {
-                iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+                iterateNestedAggregationResults(jobListDTO, jobListDTO.getAggregations());
             }
             return jobListDTO;
         }
@@ -202,7 +202,7 @@ public class JobNotificationServiceImpl implements JobNotificationService{
         JobListDTO jobListDTO = findJobNotificationsByDeadlineDate(pageable, queryBuilder, aggs);
 
         if(aggs != null) {
-            iterateNestedAggregationResults("", "", jobListDTO, jobListDTO.getAggregations());
+            iterateNestedAggregationResults(jobListDTO, jobListDTO.getAggregations());
         }
         return jobListDTO;
     }
