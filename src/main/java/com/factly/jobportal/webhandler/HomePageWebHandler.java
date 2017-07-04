@@ -17,6 +17,7 @@ import java.util.List;
  */
 @Component
 public class HomePageWebHandler {
+    final Integer HOME_PAGE_NOTIFICATIONS_LIMIT = 20;
 
     @Autowired
     private JobNotificationService jobNotificationService;
@@ -37,11 +38,17 @@ public class HomePageWebHandler {
 
     private List<JobNotificationView> buildJobNotificationView(List<JobNotificationDTO> jobNitificationsList) {
         List<JobNotificationView> jobNotificationViews = new ArrayList<>();
+        int idx = 0;
         for (JobNotificationDTO jobNotificationDTO : jobNitificationsList) {
-            JobNotificationView jobNotificationView = new JobNotificationView(jobNotificationDTO.getId(), jobNotificationDTO.getHeadline(),
-                jobNotificationDTO.getJobLocation(), jobNotificationDTO.getJobTypeType(),
-                jobNotificationDTO.getOrganization(), jobNotificationDTO.getSalary()+" Rs");
+            if(HOME_PAGE_NOTIFICATIONS_LIMIT == idx) {
+                break;
+            }
+            JobNotificationView jobNotificationView = new JobNotificationView(jobNotificationDTO.getId(),
+                jobNotificationDTO.getHeadline(), jobNotificationDTO.getJobLocation(),
+                jobNotificationDTO.getJobTypeType(), jobNotificationDTO.getOrganization(),
+                (jobNotificationDTO.getSalary() != null)?jobNotificationDTO.getSalary()+" Rs": "");
             jobNotificationViews.add(jobNotificationView);
+            idx++;
         }
         return jobNotificationViews;
     }
