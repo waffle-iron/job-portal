@@ -8,6 +8,7 @@ import io.github.jhipster.security.*;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -25,6 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.filter.CorsFilter;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @Configuration
 @EnableWebSecurity
@@ -40,6 +42,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final SessionRegistry sessionRegistry;
 
     private final CorsFilter corsFilter;
+
+    @Inject
+    private Environment env;
 
     public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,
             TokenProvider tokenProvider, SessionRegistry sessionRegistry,
@@ -86,6 +91,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        if (env.acceptsProfiles("!dev"))http.requiresChannel().anyRequest().requiresSecure();
+
         http
             .sessionManagement()
             .maximumSessions(32) // maximum number of concurrent sessions for one user
