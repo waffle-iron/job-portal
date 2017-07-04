@@ -11,6 +11,7 @@ import java.util.Map;
 public class HomePageView {
 
     public List<JobNotificationView> notifications;
+    private Integer notificationCount;
 
     private Map<String, Long> clientTypeAggregations;
     private Map<String, Long> jobSectorAggregations;
@@ -19,6 +20,10 @@ public class HomePageView {
         this.notifications = notifications;
         this.clientTypeAggregations = clientTypeAggregations;
         this.jobSectorAggregations = jobSectorAggregations;
+
+        if(notifications != null) {
+            notificationCount = notifications.size();
+        }
     }
 
     public List<JobNotificationView> getNotifications() {
@@ -31,5 +36,9 @@ public class HomePageView {
 
     public Map<String, Long> getJobSectorAggregations() {
         return jobSectorAggregations;
+    }
+
+    public Integer getNotificationCount() {
+        return notificationCount;
     }
 }
