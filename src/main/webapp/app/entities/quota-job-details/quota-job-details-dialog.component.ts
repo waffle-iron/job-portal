@@ -29,6 +29,10 @@ export class QuotaJobDetailsDialogComponent implements OnInit {
     bornBeforeDp: any;
     bornAfterDp: any;
 
+    today = new Date();
+    maxDate = {year: this.today.getFullYear(), month: this.today.getMonth()+1, day: this.today.getDate()};
+    minDate = {year: this.today.getFullYear()-100, month: this.today.getMonth()+1, day: this.today.getDate()};
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
