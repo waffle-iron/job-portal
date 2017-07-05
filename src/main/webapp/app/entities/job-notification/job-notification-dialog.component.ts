@@ -44,6 +44,10 @@ export class JobNotificationDialogComponent implements OnInit {
     notificationDateDp: any;
     applicationDeadlineDp: any;
 
+    today = new Date();
+    minApplicationDate = {year: this.today.getFullYear(), month: this.today.getMonth()+1, day: this.today.getDate()};
+    maxNotificationDate = {year: this.today.getFullYear(), month: this.today.getMonth()+1, day: this.today.getDate()};
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,

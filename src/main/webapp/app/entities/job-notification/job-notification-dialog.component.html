@@ -30,7 +30,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.notificationDate" for="field_notificationDate">Notification Date</label>
             <div class="input-group">
-                <input id="field_notificationDate" type="text" class="form-control" name="notificationDate" ngbDatepicker  #notificationDateDp="ngbDatepicker" [(ngModel)]="jobNotification.notificationDate"
+                <input id="field_notificationDate" type="text" class="form-control" name="notificationDate" [maxDate] = "maxNotificationDate" ngbDatepicker  #notificationDateDp="ngbDatepicker" [(ngModel)]="jobNotification.notificationDate"
                 required/>
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" (click)="notificationDateDp.toggle()"><i class="fa fa-calendar"></i></button>
@@ -141,7 +141,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="jobportalApp.jobNotification.applicationDeadline" for="field_applicationDeadline">Application Deadline</label>
             <div class="input-group">
-                <input id="field_applicationDeadline" type="text" class="form-control" name="applicationDeadline" ngbDatepicker  #applicationDeadlineDp="ngbDatepicker" [(ngModel)]="jobNotification.applicationDeadline"
+                <input id="field_applicationDeadline" type="text" class="form-control" [minDate] = "minApplicationDate" name="applicationDeadline" ngbDatepicker  #applicationDeadlineDp="ngbDatepicker" [(ngModel)]="jobNotification.applicationDeadline"
                 required/>
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" (click)="applicationDeadlineDp.toggle()"><i class="fa fa-calendar"></i></button>
