@@ -174,16 +174,14 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind"
     compile "com.fasterxml.jackson.module:jackson-module-afterburner"
     compile ("com.ryantenney.metrics:metrics-spring:${metrics_spring_version}")
-    compile "com.hazelcast:hazelcast"
-    compile "com.hazelcast:hazelcast-hibernate52:${hazelcast_hibernate52_version}"
-    compile "com.hazelcast:hazelcast-spring"
-    compile "com.hazelcast:hazelcast-wm:${hazelcast_wm_version}"
     compile "javax.cache:cache-api"
     compile "org.hibernate:hibernate-core:${hibernate_version}"
     compile ("com.zaxxer:HikariCP:${hikaricp_version}")
     compile "org.apache.commons:commons-lang3:${commons_lang_version}"
     compile "commons-io:commons-io:${commons_io_version}"
     compile "javax.transaction:javax.transaction-api"
+    compile "org.ehcache:ehcache"
+    compile "org.hibernate:hibernate-jcache:${hibernate_version}"
     compile "org.hibernate:hibernate-envers"
     compile "org.hibernate:hibernate-validator"
     compile ("org.liquibase:liquibase-core")

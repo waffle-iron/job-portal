@@ -7,16 +7,6 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
-                "testSkill": "Test Skill",
-                "jobType": "Job Type",
-                "jobSector": "Job Sector",
-                "clientType": "Client Type",
-                "quotaCategory": "Quota Category",
-                "selectionProcedure": "Selection Procedure",
-                "language": "Language",
-                "quotaJobDetails": "Quota Job Details",
-                "jobNotification": "Job Notification",
-                "education": "Education",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
