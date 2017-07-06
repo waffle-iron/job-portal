@@ -57,6 +57,7 @@
 					<button type="submit" class="btn btn-primary" value="Find Jobs">Search</button>
 				</form>
 			</div>
+            <span>Total Vacancies notified so far: <b th:text="${homePageView.notificationCount}">0</b></span>
 		</div><!-- container -->
 	</div><!-- banner-section -->
 
@@ -74,7 +75,7 @@
                                 </div><!-- cta-icon -->
                                 <h3 th:text="${homePageView.clientTypeAggregations.get('Central Government') != null} ?
                                     ${homePageView.clientTypeAggregations.get('Central Government')} : '0'">0</h3>
-                                <h4>Central Government Jobs</h4>
+                                <h4>Central Government Vacancies</h4>
                             </div>
                         </a>
 					</div><!-- single-cta -->
@@ -88,7 +89,7 @@
                                 </div><!-- cta-icon -->
                                 <h3 th:text="${homePageView.clientTypeAggregations.get('State Government') != null} ?
                                     ${homePageView.clientTypeAggregations.get('State Government')} : '0'">0</h3>
-                                <h4>State Government Jobs</h4>
+                                <h4>State Government Vacancies</h4>
                             </div>
                         </a>
 					</div><!-- single-cta -->
@@ -101,7 +102,7 @@
                                 </div><!-- cta-icon -->
                                 <h3 th:text="${homePageView.clientTypeAggregations.get('PSU &amp; Other States') != null} ?
                                     ${homePageView.clientTypeAggregations.get('PSU &amp; Other States')} : '0'">0</h3>
-                                <h4>PSU &amp; Other States Jobs</h4>
+                                <h4>PSU &amp; Other States Vacancies</h4>
                             </div>
                         </a>
 					</div><!-- single-cta -->
