@@ -96,11 +96,17 @@
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'job-notification/'+ jobNotification.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>-->
+                        <button type="submit"
+                                [routerLink]="['../job-notification/edit/', jobNotification.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"

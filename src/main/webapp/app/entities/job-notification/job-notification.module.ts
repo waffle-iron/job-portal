@@ -13,6 +13,7 @@ import {
     JobNotificationDeleteDialogComponent,
     jobNotificationRoute,
     jobNotificationPopupRoute,
+    JobNotificationEditComponent,
 } from './';
 
 const ENTITY_STATES = [
@@ -32,6 +33,7 @@ const ENTITY_STATES = [
         JobNotificationDeleteDialogComponent,
         JobNotificationPopupComponent,
         JobNotificationDeletePopupComponent,
+        JobNotificationEditComponent,
     ],
     entryComponents: [
         JobNotificationComponent,
@@ -39,6 +41,7 @@ const ENTITY_STATES = [
         JobNotificationPopupComponent,
         JobNotificationDeleteDialogComponent,
         JobNotificationDeletePopupComponent,
+        JobNotificationEditComponent,
     ],
     providers: [
         JobNotificationService,

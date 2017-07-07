@@ -61,5 +61,15 @@ export const quotaJobDetailsPopupRoute: Routes = [
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
-    }
+    },
+    {
+        path: 'quota-job-details-new/:id',
+        component: QuotaJobDetailsPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'jobportalApp.quotaJobDetails.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+        }
 ];

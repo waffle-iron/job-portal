@@ -6,3 +6,4 @@ export * from './job-notification-delete-dialog.component';
 export * from './job-notification-detail.component';
 export * from './job-notification.component';
 export * from './job-notification.route';
+export * from './job-notification-edit.component';

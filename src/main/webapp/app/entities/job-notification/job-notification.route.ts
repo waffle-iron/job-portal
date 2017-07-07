@@ -8,6 +8,7 @@ import { JobNotificationComponent } from './job-notification.component';
 import { JobNotificationDetailComponent } from './job-notification-detail.component';
 import { JobNotificationPopupComponent } from './job-notification-dialog.component';
 import { JobNotificationDeletePopupComponent } from './job-notification-delete-dialog.component';
+import { JobNotificationEditComponent } from './job-notification-edit.component';
 
 import { Principal } from '../../shared';
 
@@ -28,22 +29,20 @@ export const jobNotificationRoute: Routes = [
             pageTitle: 'jobportalApp.jobNotification.home.title'
         },
         canActivate: [UserRouteAccessService]
-    }
+    }, {
+              path: 'job-notification/edit/:id',
+              component: JobNotificationEditComponent,
+              data: {
+                  authorities: ['ROLE_USER'],
+                  pageTitle: 'jobportalApp.jobNotification.home.title'
+              },
+              canActivate: [UserRouteAccessService]
+              }
 ];
 
 export const jobNotificationPopupRoute: Routes = [
     {
         path: 'job-notification-new',
-        component: JobNotificationPopupComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'jobportalApp.jobNotification.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'job-notification/:id/edit',
         component: JobNotificationPopupComponent,
         data: {
             authorities: ['ROLE_USER'],

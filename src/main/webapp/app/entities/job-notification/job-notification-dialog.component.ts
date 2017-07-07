@@ -17,6 +17,7 @@ import { TestSkill, TestSkillService } from '../test-skill';
 import { SelectionProcedure, SelectionProcedureService } from '../selection-procedure';
 import { Language, LanguageService } from '../language';
 import { ResponseWrapper } from '../../shared';
+import { EditorComponent } from '../../shared/editor/editor.component'
 
 @Component({
     selector: 'jhi-job-notification-dialog',
