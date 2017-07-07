@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/factly/job-portal.png?label=ready&title=Ready)](https://waffle.io/factly/job-portal?utm_source=badge)
 # T-Job Portal
 
 Following are the steps to Install Job Portal on your local system, run it for your reference and help us in the 
